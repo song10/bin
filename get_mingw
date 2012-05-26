@@ -1,0 +1,1 @@
+sudo apt-get install -y mingw32 # mingw32-binutils mingw32-runtime

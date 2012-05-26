@@ -1,0 +1,37 @@
+#!/bin/sh
+
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+T='pct.vim'
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  git pul
+else
+  git clone git://github.com/pct/pct.vim.git
+  cd $T/
+  sudo apt-get install -y git mercurial exuberant-ctags links curl splint tidy pyflakes pylint chktex libxml2-utils ruby-dev
+  npm install -g jslint
+fi
+
+if [ ! -e ~/.vimrc.yours ]; then
+  mv ~/.vimrc ~/.vimrc.yours
+  mv ~/.vim ~/.vim.yours
+fi
+
+./update.sh
+cd .vim/bundle/Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install; cd -
+ln -s -f `pwd`/.vimrc ~/
+ln -s -f `pwd`/.vim ~/
+
+# patch
+#sed -i '/echo.\+"withdrawn"/ d' ~/.vim/bundle/man-page-view/plugin/withdrawn.vim
+echo 'set nobackup' >> ~/.vimrc
+echo 'set ts=4' >> ~/.vimrc
+echo 'set noexpandtab' >> ~/.vimrc
+echo '" highlight tabs and trailing spaces' >> ~/.vimrc
+echo 'set listchars=tab:>-,trail:-' >> ~/.vimrc
+echo 'set nolist' >> ~/.vimrc
+echo 'set mouse=' >> ~/.vimrc
+echo 'highlight LineNr ctermfg=blue' >> ~/.vimrc

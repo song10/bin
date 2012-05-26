@@ -1,0 +1,45 @@
+R=$(readlink -m $(dirname $0))
+cd $R
+
+assert_dir () {
+	for x in $*; do
+		if [ ! -d $x ]; then
+			mkdir -p $x
+		fi
+	done
+}
+
+cvs2git() {
+	for x in $*; do
+		path=$(dirname $x)
+		name=$(basename $x)
+		if [ -d cvs/$name ]; then
+			xnull=`cd cvs/$name; cvs up 2>&1`
+		else
+			xnull=`cd cvs/; cvs co -d $name $path/$name 2>&1`
+		fi
+		xnull=`cd cvs/$name; git cvsimport -C ../../git/$name -a 2>&1`
+		echo $x : `cd git/$name; git status`
+	done
+}
+
+assert_dir cvs git
+
+#cvs2git demo/source/tslib
+##cvs2git demo/source/jpeg-6b
+##cvs2git demo/source/fbv-1.0b
+#cvs2git demo/source/libmad-0.15.1b
+#cvs2git demo/source/MPlayer-1.0rc2
+
+exit 0
+
+# cvs co tslib
+if [ -d cvs/tslib ]; then
+	x=`cd cvs/tslib; cvs up`
+else
+	x=`cd cvs/; cvs co -d tslib demo/source/tslib`
+fi
+
+# git clone tslib
+x=`cd cvs/tslib; git cvsimport -v -C ../../git/tslib -a`
+x=`cd git/tslib; git status`

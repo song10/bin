@@ -1,0 +1,28 @@
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+expr "$*" : '.* \?init \?' > /dev/null && \
+  sudo apt-get install -y libssl-dev libltdl-dev
+
+force=no
+expr "$*" : '.* \?force \?' > /dev/null && \
+  force=yes
+
+T=node
+build=yes
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+else
+  git clone git://github.com/joyent/node.git
+  cd $T/
+fi
+
+if [ "yes" = "$build" -o "yes" = "$force" ]; then
+  ./configure --prefix=$HOME/opt
+  make
+  make install
+fi

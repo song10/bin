@@ -1,0 +1,8 @@
+if [ 'ins' = "$1" ]; then
+  sudo apt-get install libssl-dev libltdl-dev
+fi
+
+cd node/
+./configure --prefix=$HOME/opt
+make
+make install

@@ -1,0 +1,4 @@
+echo password is any
+cvs -z 9 -d :pserver:anoncvs@sources.redhat.com:/cvs/src login
+cvs -z 9 -d :pserver:anoncvs@sources.redhat.com:/cvs/src co newlib
+mv src/ newlib

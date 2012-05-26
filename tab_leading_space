@@ -1,0 +1,5 @@
+#!/bin/sh
+for x in $*; do
+  echo TAB $x
+  unexpand --first-only -t4 $x > /tmp/_$x_; mv /tmp/_$x_ $x
+done

@@ -1,0 +1,21 @@
+#!/bin/sh
+cd ~
+if [ ! -e .vimrc.yours ]; then
+  mv .vimrc .vimrc.yours
+  mv .vim .vim.yours
+fi
+cd ~/wrk
+if [ ! -d pct.vim ]; then
+  git clone git://github.com/pct/pct.vim.git
+  sudo apt-get install -y git mercurial exuberant-ctags links curl splint tidy pyflakes pylint chktex libxml2-utils ruby-dev
+  npm install -g jslint
+fi
+cd pct.vim; ./update.sh; cd -
+cd pct.vim/.vim/bundle/Command-T/ruby/command-t/; ruby extconf.rb; make; sudo make install; cd -
+cd ~
+ln -s wrk/pct.vim/.vimrc
+ln -s wrk/pct.vim/.vim
+
+# patch
+sed -i '/echo.\+"withdrawn"/ d' ~/.vim/bundle/man-page-view/plugin/withdrawn.vim
+echo "set nobackup" >> ~/.vimrc

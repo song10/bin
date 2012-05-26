@@ -1,0 +1,23 @@
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+expr "$*" : '.* \?init \?' > /dev/null && \
+  sudo apt-get install -y libcurl4-openssl-dev
+
+T=git
+build=yes
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+else
+  git clone https://github.com/git/git.git
+  cd $T/
+fi
+
+if [ "yes" = "$build" ]; then
+  make prefix=$HOME/opt all # doc info
+  make prefix=$HOME/opt install # install-doc install-html install-info
+fi

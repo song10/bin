@@ -1,0 +1,8 @@
+# How To Create Desktop Launchers in Ubuntu 11.10(Oneiric)
+#sudo apt-get install --no-install-recommends gnome-panel
+#gnome-desktop-item-edit ~/Desktop/ --create-new
+install main menu; create launcher; run it; lock it
+
+
+# How to dump predefined macros
+gcc -E -dM - < /dev/null

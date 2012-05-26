@@ -1,0 +1,2 @@
+curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
+npm install -g express jade stylus html2jade markdown coffee-script js2coffee jslint nopt dot

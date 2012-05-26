@@ -1,0 +1,26 @@
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+expr "$*" : '.* \?init \?' > /dev/null && \
+  sudo apt-get install -y flex
+
+expr "$*" : '.* \?force \?' > /dev/null && \
+  force=yes
+
+T=parsecvs
+build=yes
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+else
+  git clone git://gitorious.org/parsecvs/mainline.git parsecvs
+  cd $T/
+fi
+
+if [ "yes" = "$build" -o "yes" = "$force" ]; then
+  CFLAGS=-I../git make
+  ln -f parsecvs ~/opt/bin/
+fi

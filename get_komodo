@@ -1,0 +1,12 @@
+svn co http://svn.openkomodo.com/repos/openkomodo/trunk openkomodo
+#---- Build Mozilla
+cd openkomodo/mozilla
+python build.py configure -k 7.10 --moz-src=700 --release --no-strip
+python build.py distclean all
+cd ..
+#---- Build Komodo
+export PATH=`pwd`/util/black:$PATH   # Komodo's "bk" build tool
+bk configure -V 7.10.0-devel
+bk build
+#---- Run Komodo
+bk run

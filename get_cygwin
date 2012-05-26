@@ -1,0 +1,17 @@
+export CVSROOT=:pserver:anoncvs@cygwin.com:/cvs/src
+if [ -e ~/.cvspass ]; then
+  grep ~/.cvspass -e 'cygwin\.com' > /dev/null
+  if [ ! $? ]; then
+    echo CVS password: anoncvs
+    cvs login
+  fi
+fi
+
+if [ -d cygwin ]; then
+  pushd cygwin/
+  cvs update
+  popd
+else
+  cvs checkout winsup
+  mv src cygwin
+fi

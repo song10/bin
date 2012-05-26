@@ -1,0 +1,25 @@
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+expr "$*" : '.* \?init \?' > /dev/null && \
+  :
+
+T=rakudo
+build=yes
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+else
+  git clone git://github.com/rakudo/rakudo.git
+  cd $T/
+fi
+
+if [ "yes" = "$build" ]; then
+  perl Configure.pl --gen-parrot --gen-nqp --prefix=$HOME/opt
+  make
+  make install
+# ln -f perl6 ~/opt/bin/
+fi

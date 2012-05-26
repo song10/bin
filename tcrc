@@ -1,0 +1,5 @@
+PATH=`python -c 'import sys,re;l=sys.argv[1].split(":");ll=[x for x in l if not re.search("nds32..-.+/bin$",x)];print ":".join(ll)' $PATH`
+#export PATH=$PATH:~/my/old/song10/Andes/toolchain/bsp310/nds32le-elf-newlib-v2/bin
+#export PATH=$PATH:~/my/old/song10/Andes/toolchain/bsp310/nds32le-linux-uclibc-v2/bin
+export PATH=$PATH:~/tc/bsp310/nds32le-elf-newlib-v2/bin
+export PATH=$PATH:~/tc/bsp310/nds32le-linux-glibc-v2/bin

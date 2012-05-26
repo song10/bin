@@ -1,0 +1,7 @@
+cd qemu
+mkdir -p build
+cd ./build
+#../configure --prefix=$HOME/opt --target-list=nds32le-softmmu,nds32le-linux-user --disable-kqemu --disable-bluez
+../configure --prefix=$HOME/opt --target-list=nds32le-softmmu,nds32le-linux-user --disable-bluez
+make
+make install

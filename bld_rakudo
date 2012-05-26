@@ -1,0 +1,4 @@
+cd rakudo
+perl Configure.pl --gen-parrot --gen-nqp --prefix=$HOME/opt
+make
+make install

@@ -1,0 +1,5 @@
+cd sdcc/
+./configure --prefix=$HOME/opt --disable-z80-port --disable-z180-port --disable-r2k-port --disable-gbz80-port --disable-ds390-port --disable-ds400-port --disable-pic14-port --disable-pic16-port --disable-hc08-port
+#--enable-xa51-port
+make
+make install

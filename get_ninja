@@ -1,0 +1,23 @@
+R=$(readlink -m $(dirname $0)/..)
+cd $R
+
+expr "$*" : '.* \?init \?' > /dev/null && \
+  :
+
+T=ninja
+build=yes
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+else
+  git clone https://github.com/martine/ninja.git
+  cd $T/
+fi
+
+if [ "yes" = "$build" ]; then
+  ./bootstrap.py
+  ln -f ninja ~/opt/bin/
+fi

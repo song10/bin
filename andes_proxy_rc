@@ -1,0 +1,7 @@
+export http_proxy=http://cache1:3128/
+export ftp_proxy=ftp://cache1:3128/
+export socks_proxy=socks://cache1:3128/
+export UBUNTU_MENUPROXY=libappmenu.so
+export https_proxy=https://cache1:3128/
+
+export HTTP_PROXY=http://cache1:3128/

@@ -1,0 +1,18 @@
+timeout 3600
+again:
+  expect "\n/ # "
+  send "for x in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32; do dd if=/dev/zero of=/mnt/dump$x bs=1M count=1; mv /mnt/dump$x /mnt/dump; done"
+
+exit
+  expect "\n/ # "
+  send "dd if=/dev/zero of=/mnt/dump20 bs=1M count=20"
+  expect "\n/ # "
+  send "ll /mnt"
+
+  expect "/ # "
+  send "dd if=/dev/zero of=/mnt/dump21 bs=1M count=21"
+  expect "/ # "
+  send "ll /mnt"
+
+  expect "reboot"
+  goto again
