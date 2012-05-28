@@ -1,0 +1,28 @@
+cd {{=it.json.path}}
+
+{{? it.init}}
+{{=it.json.init}}
+{{?}}
+
+T={{=it.json.name}}
+{{? !it.force}}build=yes{{?}}
+if [ -d $T/ ]; then
+  cd $T
+  git reset --hard
+  x=`git pul`
+{{? !it.force}}
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no
+{{?}}
+else
+  {{=it.json.get}}
+  cd $T/
+fi
+
+{{? it.force}}
+{{=it.json.build}}
+{{??}}
+if [ "yes" = "$build" ]; then
+  {{=it.json.build}}
+fi
+{{?}}
