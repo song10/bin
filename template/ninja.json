@@ -1,0 +1,9 @@
+{
+	"json": {
+		"name": "ninja",
+		"template": "get.dot",
+		"init": "",
+		"get": "git clone https://github.com/martine/ninja.git",
+		"build": "./bootstrap.py\n  ln -f ninja ~/opt/bin/"
+	}
+}
