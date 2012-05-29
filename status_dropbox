@@ -1,0 +1,1 @@
+while :;do dropbox status; sleep 5; done
