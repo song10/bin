@@ -7,3 +7,5 @@ npm install -g \
   nopt \
   dot \
   jquery \
+  connect \
+  dnode \
