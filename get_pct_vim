@@ -1,6 +1,6 @@
 #!/bin/sh
 
-R=$(readlink -m $(dirname $0)/..)
+R=$(readlink -f $(dirname $0)/../wrk)
 cd $R
 
 T='pct.vim'
