@@ -1,3 +1,4 @@
+sudo apt-get install -y curl
 curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
 npm install -g \
   express jade stylus \
