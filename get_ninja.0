@@ -1,4 +1,4 @@
-R=$(readlink -m $(dirname $0)/..)
+R=~/wrk/
 cd $R
 
 expr "$*" : '.* \?init \?' > /dev/null && \
