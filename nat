@@ -1,0 +1,12 @@
+#!/bin/sh
+if test 0 -eq $#; then
+  sudo iptables -t nat --line-numbers -n -L
+elif test 2 -eq $#; then
+  sudo iptables -t nat -A PREROUTING -p tcp --dport $1 -j REDIRECT --to-port $2
+elif test '-l' = $1; then
+  sudo iptables -t nat --line-numbers -n -L
+elif test '-d' = $1; then
+  sudo iptables -t nat -D PREROUTING $2
+else
+  echo unknow arguments: $*
+fi
