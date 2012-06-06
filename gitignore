@@ -1,2 +1,12 @@
 #!/bin/sh
-git st | grep -P '^#\t'|sed 's/#\t//'|grep -v -P '^\.\.'
+if test 0 -lt $#; then
+  if test "-n" = "$1"; then
+    arg=--no-assume-unchanged
+    shift
+  else
+    arg=--assume-unchanged
+  fi
+  git update-index $arg $*
+else
+  git st | grep -P '^#\t'|sed 's/#\t//'|grep -v -P '^\.\.'
+fi

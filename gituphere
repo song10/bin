@@ -1,0 +1,27 @@
+#!/bin/sh
+
+if test $# -lt 1 ; then
+	echo need 1 argument;
+	exit 1;
+fi
+
+_gituphere () {
+	GIT=$1
+	if [ ! -d "$DIR" ]; then
+		git init
+		git remote add origin "$GIT"
+		git fetch
+		git checkout -b master origin/master
+	else
+		x=$(git status|wc -l)
+		if test $x -gt 2; then _=$(git stash); fi
+		git pull --rebase
+		if test $x -gt 2; then _=$(git stash pop); fi
+	fi
+}
+
+if [ ! `which git` ]; then
+	sudo apt-get install -y git
+fi
+
+_gituphere $*

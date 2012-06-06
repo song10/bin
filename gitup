@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if test $# -lt 2 ; then
+	echo need 2 arguments;
+	exit 1;
+fi
+
+_gitup () {
+	GIT=$1
+	DIR=$2
+	if [ ! -d "$DIR" ]; then
+		git clone "$GIT" "$DIR"
+	else
+		cd "$DIR"
+		x=$(git status|wc -l)
+		if test $x -gt 2; then _=$(git stash); fi
+		git pull --rebase
+		if test $x -gt 2; then _=$(git stash pop); fi
+	fi
+}
+
+if [ -n "$ROOT" ]; then
+	cd $ROOT
+fi
+
+_gitup $*
