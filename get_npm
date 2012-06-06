@@ -1,4 +1,7 @@
-sudo apt-get install -y curl
+if test ! `which curl`; then
+	sudo apt-get install -y curl
+fi
+
 curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
 npm install -g \
   express jade stylus \
@@ -10,3 +13,4 @@ npm install -g \
   jquery \
   connect \
   dnode \
+  less \
