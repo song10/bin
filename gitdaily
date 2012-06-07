@@ -1,0 +1,38 @@
+#!/bin/sh
+
+RDIR="$HOME/Dropbox/repo/my"
+PRJS="ubfavor.git:$HOME/wrk/ubfavor bin.git:$HOME/bin xman.git:$HOME/wrk/xman"
+HERE=`pwd`
+
+status () {
+	PS="$HOME $HOME/bin $HOME/wrk/ubfavor $HOME/wrk/xman"
+	for x in $PS; do
+		echo
+		cd $x
+		pwd
+		git status
+	done
+	x=$?
+	cd $HERE
+	return $x
+}
+
+if test "st" = "$1"; then
+	status
+	exit $?
+fi
+
+cmd="gituphere $RDIR/ubhome.git"
+echo $cmd
+cd $HOME && $cmd
+cd $HERE
+
+for x in $PRJS; do
+	gn=$(echo $x|cut -d':' -f1)
+	pa=$(echo $x|cut -d':' -f2)
+	cmd="gitup $RDIR/$gn $pa"
+	echo $cmd
+	$cmd
+done
+
+status

@@ -7,7 +7,7 @@ fi
 
 _gituphere () {
 	GIT=$1
-	if [ ! -d "$DIR" ]; then
+	if [ ! -d ".git" ]; then
 		git init
 		git remote add origin "$GIT"
 		git fetch
