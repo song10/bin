@@ -15,7 +15,7 @@ _gitup () {
 		x=$(git status|wc -l)
 		if test $x -gt 2; then _=$(git stash); fi
 		git pull --rebase
-		if test $x -gt 2; then _=$(git stash pop); fi
+		if test $x -gt 2; then _=$(git stash pop >/dev/null 2>&1); fi
 	fi
 }
 
