@@ -2,6 +2,7 @@
 	"json": {
 		"name": "node",
 		"template": "get.dot",
+		"path": "~/wrk",
 		"init": "sudo apt-get install -y libssl-dev libltdl-dev",
 		"get": "git clone git://github.com/joyent/node.git",
 		"build": "./configure --prefix=$HOME/opt\n  make\n  make install"
