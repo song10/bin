@@ -7,3 +7,4 @@ gdb:~/tmp/gdb/bin
 startup:~/wrk/startup
 linux:~/wrk/linux-2.6
 node:~/wrk/node
+uitron:~/tmp/uitron/test
