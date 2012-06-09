@@ -10,3 +10,4 @@ node:~/wrk/node
 uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
 wrk:~/wrk
+ninja:~/wrk/ninja
