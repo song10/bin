@@ -14,7 +14,7 @@ if [ -d $T/ ]; then
   echo $x
   echo ===
   expr "$x" : "Current.*up to date" > /dev/null && \
-    build=no; echo no build
+    build=no && echo no build
 else
   git clone https://github.com/martine/ninja.git
   cd $T/
