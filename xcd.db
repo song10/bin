@@ -9,3 +9,4 @@ linux:~/wrk/linux-2.6
 node:~/wrk/node
 uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
+wrk:~/wrk
