@@ -10,8 +10,9 @@ if [ -d $T/ ]; then
   cd $T
   git reset --hard
   x=`git pul`
+  echo $x
   expr "$x" : "Current.*up to date" > /dev/null && \
-    build=no
+    build=no; echo no build
 else
   git clone https://github.com/martine/ninja.git
   cd $T/
