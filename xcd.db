@@ -11,3 +11,8 @@ uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
 wrk:~/wrk
 ninja:~/wrk/ninja
+iceman:~/tmp/iceman/bin
+sid:~/wrk/sid1
+sid/bld:~/tmp/sid/bld
+sid/issue:~/tmp/sid/issues
+vep2conf:~/wrk/vep2conf/src
