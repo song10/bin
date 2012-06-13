@@ -14,7 +14,8 @@ ninja:~/wrk/ninja
 iceman:~/tmp/iceman/bin
 sid:~/wrk/sid1
 sid/bld:~/tmp/sid/bld
-sid/issue:~/tmp/sid/issues
+sid/issues:~/tmp/sid/issues
 vep2conf:~/wrk/vep2conf/src
 andes:/mnt/home2/andes
 repo:~/Dropbox/repo
+issues:~/tmp/issues
