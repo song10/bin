@@ -13,4 +13,12 @@
 _proxy=cache1
 _proxyport=3128
 
-exec socat STDIO PROXY:$_proxy:$1:$2,proxyport=$_proxyport
+#exec socat STDIO PROXY:$_proxy:$1:$2,proxyport=$_proxyport
+
+####
+
+# Set git to use the credential memory cache
+git config --global credential.helper cache
+
+# Set the cache to timeout after 1 hour (setting is in seconds)
+git config --global credential.helper 'cache --timeout=3600'
