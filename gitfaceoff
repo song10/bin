@@ -1,0 +1,16 @@
+#!/bin/sh
+prjs="$HOME:ubhome $HOME/bin:bin $HOME/wrk/ubfavor:ubfavor"
+for x in $prjs; do
+  dir=`echo $x|cut -d':' -f1`
+  nam=`echo $x|cut -d':' -f2`
+  cd $dir;
+  grep github .git/config && continue
+
+  git remote rename origin dropbox
+  git remote add origin https://github.com/song10/$nam.git
+  git fetch origin
+  sed -i 's/remote = dropbox/remote = origin/' .git/config
+  git pull --rebase
+done
+
+gitdaily

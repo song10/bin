@@ -4,6 +4,7 @@ fi
 
 curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
 npm install -g \
+  npm-registry-client \
   express jade stylus \
   html2jade markdown \
   coffee-script js2coffee \
