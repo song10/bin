@@ -14,3 +14,8 @@ for x in $prjs; do
 done
 
 gitdaily
+
+cd ~
+grep github .git/config bin/.git/config wrk/ubfavor/.git/config 
+grep remote .git/config bin/.git/config wrk/ubfavor/.git/config 
+
