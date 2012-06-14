@@ -1,10 +1,9 @@
 #!/bin/sh
 
-RDIR="$HOME/Dropbox/repo/my"
-PRJS="ubfavor.git|https://github.com/song10/ubfavor.git bin.git|https://github.com/song10/bin.git xman.git|$HOME/wrk/xman"
+PRJS="https://github.com/song10/ubfavor.git|$HOME/wrk/ubfavor https://github.com/song10/bin.git|$HOME/bin $HOME/Dropbox/repo/my|$HOME/wrk/xman"
 HERE=`pwd`
 
-status () {
+_status () {
 	PS="$HOME $HOME/bin $HOME/wrk/ubfavor $HOME/wrk/xman"
 	for x in $PS; do
 		echo
@@ -30,9 +29,9 @@ cd $HERE
 for x in $PRJS; do
 	gn=$(echo $x|cut -d'|' -f1)
 	pa=$(echo $x|cut -d'|' -f2)
-	cmd="gitup $RDIR/$gn $pa"
+	cmd="gitup $gn $pa"
 	echo $cmd
 	$cmd
 done
 
-status
+_status
