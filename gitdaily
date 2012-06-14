@@ -1,7 +1,7 @@
 #!/bin/sh
 
 RDIR="$HOME/Dropbox/repo/my"
-PRJS="ubfavor.git:$HOME/wrk/ubfavor bin.git:$HOME/bin xman.git:$HOME/wrk/xman"
+PRJS="ubfavor.git|https://github.com/song10/ubfavor.git bin.git|https://github.com/song10/bin.git xman.git|$HOME/wrk/xman"
 HERE=`pwd`
 
 status () {
@@ -22,14 +22,14 @@ if test "st" = "$1"; then
 	exit $?
 fi
 
-cmd="gituphere $RDIR/ubhome.git"
+cmd="gituphere https://github.com/song10/ubhome.git"
 echo $cmd
 cd $HOME && $cmd
 cd $HERE
 
 for x in $PRJS; do
-	gn=$(echo $x|cut -d':' -f1)
-	pa=$(echo $x|cut -d':' -f2)
+	gn=$(echo $x|cut -d'|' -f1)
+	pa=$(echo $x|cut -d'|' -f2)
 	cmd="gitup $RDIR/$gn $pa"
 	echo $cmd
 	$cmd
