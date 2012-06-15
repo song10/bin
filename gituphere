@@ -13,11 +13,10 @@ _gituphere () {
 		git fetch
 		git checkout -b master origin/master
 	else
-		_=$(git status|grep Changes)
-		x=$?
-		if test $x; then _=$(git stash); fi
+		_=$(git status|grep Changes) && x=true || x=false
+		if $x; then _=$(git stash); fi
 		git pull --rebase
-		if test $x; then _=$(git stash pop); fi
+		if $x; then _=$(git stash pop); fi
 	fi
 }
 

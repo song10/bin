@@ -12,11 +12,10 @@ _gitup () {
 		git clone "$GIT" "$DIR"
 	else
 		cd "$DIR"
-		_=$(git status|grep Changes)
-		x=$?
-		if test $x; then _=$(git stash); fi
+		_=$(git status|grep Changes) && x=true || x=false
+		if $x; then _=$(git stash); fi
 		git pull --rebase
-		if test $x; then _=$(git stash pop >/dev/null 2>&1); fi
+		if $x; then _=$(git stash pop); fi
 	fi
 }
 
