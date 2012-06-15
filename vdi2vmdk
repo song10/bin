@@ -1,0 +1,14 @@
+#!/bin/sh
+if test 1 -gt $#; then
+  echo "\tusage:" $(basename $0) vdi vmdk
+  exit 1
+fi
+
+if test 2 -gt $#; then
+  vmdk=`echo $1|sed 's/\..\+/.vmdk/'`
+else
+  vmdk=$2
+fi
+
+echo vboxmanage clonehd $1 $vmdk --format VMDK --variant Split2G
+vboxmanage clonehd $1 $vmdk --format VMDK --variant Split2G
