@@ -13,5 +13,6 @@ if test 1 -gt $#; then
   exit $?
 fi
 
+for x in `ps aux | grep -i cpufreq-selector | grep powersave|cut -d' ' -f7`; do sudo kill -n 9 $x; done
 echo sudo cpufreq-selector -g $* \&
 sudo cpufreq-selector -g $* &
