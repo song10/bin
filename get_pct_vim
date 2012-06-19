@@ -3,16 +3,27 @@
 R=$(readlink -f $(dirname $0)/../wrk)
 cd $R
 
+expr "$*" : '.* \?-i \?' > /dev/null && \
+  sudo apt-get install -y vim git mercurial exuberant-ctags links curl splint tidy pyflakes pylint chktex libxml2-utils ruby-dev \
+  #npm install -g jslint
+
+expr "$*" : '.* \?-f \?' > /dev/null && \
+  force=yes
+
 T='pct.vim'
+build=yes
 if [ -d $T/ ]; then
   cd $T
   git reset --hard
-  git pul
+  x=`git pul`
+  echo ===
+  echo $x
+  echo ===
+  expr "$x" : "Current.*up to date" > /dev/null && \
+    build=no && if test "yes" != "$force"; then echo no build; fi
 else
-  git clone git://github.com/pct/pct.vim.git
+  git clone https://github.com/pct/pct.vim.git
   cd $T/
-  sudo apt-get install -y git mercurial exuberant-ctags links curl splint tidy pyflakes pylint chktex libxml2-utils ruby-dev
-  npm install -g jslint
 fi
 
 if [ ! -e ~/.vimrc.yours ]; then

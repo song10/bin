@@ -1,8 +1,14 @@
-R=$HOME/wrk
+#!/bin/sh
+
+R=~/wrk
 mkdir -p $R
 cd $R
 
-sudo apt-get install -y libssl-dev libltdl-dev g++
+expr "$*" : '.* \?-i \?' > /dev/null && \
+  sudo apt-get install -y libssl-dev libltdl-dev g++
+
+expr "$*" : '.* \?-f \?' > /dev/null && \
+  force=yes
 
 T=node
 build=yes
@@ -14,9 +20,9 @@ if [ -d $T/ ]; then
   echo $x
   echo ===
   expr "$x" : "Current.*up to date" > /dev/null && \
-    build=no && echo no build
+    build=no && if test "yes" != "$force"; then echo no build; fi
 else
-  git clone git://github.com/joyent/node.git
+  git clone https://github.com/joyent/node.git
   cd $T/
 fi
 

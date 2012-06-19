@@ -1,8 +1,14 @@
-R=~/wrk/
+#!/bin/sh
+
+R=~/wrk
+mkdir -p $R
 cd $R
 
-expr "$*" : '.* \?init \?' > /dev/null && \
+expr "$*" : '.* \?-i \?' > /dev/null && \
   :
+
+expr "$*" : '.* \?-f \?' > /dev/null && \
+  force=yes
 
 T=ninja
 build=yes
@@ -14,13 +20,14 @@ if [ -d $T/ ]; then
   echo $x
   echo ===
   expr "$x" : "Current.*up to date" > /dev/null && \
-    build=no && echo no build
+    build=no && if test "yes" != "$force"; then echo no build; fi
 else
   git clone https://github.com/martine/ninja.git
   cd $T/
 fi
 
-if [ "yes" = "$build" ]; then
+if [ "yes" = "$build" -o "yes" = "$force" ]; then
   ./bootstrap.py
+  mkdir -p ~/opt/bin
   ln -f ninja ~/opt/bin/
 fi
