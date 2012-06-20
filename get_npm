@@ -3,15 +3,14 @@ if test ! `which curl`; then
 fi
 
 curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
-npm install -g \
-  npm-registry-client \
-  express jade stylus \
-  html2jade markdown \
+npm install -g -ddd \
   coffee-script js2coffee \
-  jslint \
   nopt \
   dot \
+  express jade \
+  less \
+  html2jade markdown \
+  jslint \
   jquery \
   connect \
   dnode \
-  less \

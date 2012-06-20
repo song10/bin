@@ -1,0 +1,10 @@
+#!/bin/sh
+
+_coffee () {
+	echo === get gedit coffee addons ===
+	wget https://github.com/wavded/gedit-coffeescript/blob/master/coffee_script.lang -P ~/.local/share/gtksourceview-2.0/language-specs
+}
+
+####
+
+expr "$*" : '.* \?coffee \?' > /dev/null && _coffee
