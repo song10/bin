@@ -2,8 +2,11 @@ if test ! `which curl`; then
 	sudo apt-get install -y curl
 fi
 
+expr "$*" : '.* \?debug \?' > /dev/null && \
+ npmflags="$npmflags -ddd"
+
 curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
-npm install -g -ddd \
+npm install -g $npmflags \
   coffee-script js2coffee \
   nopt \
   dot \
