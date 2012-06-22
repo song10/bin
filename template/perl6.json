@@ -1,0 +1,10 @@
+{
+	"json": {
+		"name": "rakudo",
+		"template": "get.dot",
+		"path": "~/wrk",
+		"init": "",
+		"get": "git clone https://github.com/rakudo/rakudo.git",
+		"build": "perl Configure.pl --gen-parrot --gen-nqp\n make\n make install\n rm -f ~/opt/bin/perl6\n ln -s `pwd`/install/bin/perl6 ~/opt/bin/"
+	}
+}

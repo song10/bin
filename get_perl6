@@ -1,0 +1,4 @@
+#!/bin/sh
+goal=perl6
+path=~/bin/template
+fuse.js $path/$goal.json -t $path/get.dot $* | sh
