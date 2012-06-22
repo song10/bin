@@ -1,0 +1,19 @@
+#!/bin/sh
+
+R=~
+cd $R
+
+which vimpyre > /dev/null
+if test ! $?; then
+    sudo apt-get install -y python-dev libxslt1-dev
+    sudo pip install vimpyre
+fi
+
+T='vimrc-core'
+if test -d $T; then
+    cd $T
+    ./update.sh
+    cd - > /dev/null
+else
+    wget --no-check-certificate https://github.com/pct/vimrc-core/raw/master/install.sh -O - | sh    
+fi
