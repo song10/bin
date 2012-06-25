@@ -1,0 +1,29 @@
+#!/usr/bin/perl
+if (1 > @ARGV) { print "no file to edit\n"; exit; }
+my $arg = join(' ', @ARGV);
+my ($fn, $ln);
+while (1) {
+	if ($arg =~ m|([\w/:\.\-\$]+):(\d+)|) {
+		($fn,$ln)=($1,$2);
+		last;
+	}
+	
+	if ($arg =~ m|([\w/:\.\-\$]+)\s+(\d+)|) {
+		($fn,$ln)=($1,$2);
+		last;
+	}
+
+	$fn=$ARGV[0];
+	last;
+}
+
+if (defined($ln)) {
+	$ln="+$ln";
+}
+
+if (defined($ENV{'MyVerbose'})) {
+	print "fn: '$fn'\n";
+	print "ln: '$ln'\n";
+}
+
+system("vim $fn $ln");
