@@ -1,4 +1,21 @@
 #!/bin/sh
+
+npmcmd=install
+npmmod="\
+ coffee-script\
+ js2coffee\
+ nopt\
+ dot\
+ express@2\
+ jade\
+ less\
+ html2jade\
+ markdown\
+ jslint\
+ jquery\
+ connect\
+ dnode\
+"
 _=`which curl` \
 	|| sudo apt-get install -y curl
 
@@ -8,22 +25,15 @@ _=`which npm` \
 expr "$*" : '.* \?debug \?' > /dev/null && \
  npmflags="$npmflags -ddd"
 
+expr "$*" : '.* \?remove \?' > /dev/null && \
+ npmcmd=remove && npmmod="$npmmod npm"
+
 _npm () {
 	echo
-	echo "npm install -g $npmflags $1"
-	npm install -g $npmflags $1
+	echo "npm $npmcmd -g $npmflags $1"
+	npm $npmcmd -g $npmflags $1
 }
 
-_npm coffee-script
-_npm js2coffee
-_npm nopt
-_npm dot
-_npm express
-_npm jade
-_npm less
-_npm html2jade
-_npm markdown
-_npm jslint
-_npm jquery
-_npm connect
-_npm dnode
+for x in $npmmod; do
+	_npm $x
+done
