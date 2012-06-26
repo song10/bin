@@ -1,19 +1,29 @@
-if test ! `which curl`; then
-	sudo apt-get install -y curl
-fi
+#!/bin/sh
+_=`which curl` \
+	|| sudo apt-get install -y curl
+
+_=`which npm` \
+	|| curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
 
 expr "$*" : '.* \?debug \?' > /dev/null && \
  npmflags="$npmflags -ddd"
 
-curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
-npm install -g $npmflags \
-  coffee-script js2coffee \
-  nopt \
-  dot \
-  express jade \
-  less \
-  html2jade markdown \
-  jslint \
-  jquery \
-  connect \
-  dnode \
+_npm () {
+	echo
+	echo "npm install -g $npmflags $1"
+	npm install -g $npmflags $1
+}
+
+_npm coffee-script
+_npm js2coffee
+_npm nopt
+_npm dot
+_npm express
+_npm jade
+_npm less
+_npm html2jade
+_npm markdown
+_npm jslint
+_npm jquery
+_npm connect
+_npm dnode
