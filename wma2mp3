@@ -1,0 +1,3 @@
+#!/bin/sh
+#ffmpeg -i $1 -acodec libmp3lame -ab 128k $2
+echo "Sound Converter"
