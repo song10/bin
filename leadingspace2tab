@@ -1,2 +1,14 @@
 #!/bin/sh
-unexpand -t4 --first-only $*
+if test -z "$1"; then echo `basename $0` File [Tab-Width] [-i]; exit 1; fi
+
+inplace=no
+width=4
+expr "$*" : '.*[[:space:]]\+-i' > /dev/null && inplace=yes
+x=`expr "$*" : '.*[[:space:]]\+\([0-9]\+\)'` && width=$x
+
+if test "yes" = "$inplace"; then
+	unexpand --first-only --tabs=$width $1 > /tmp/x
+	mv /tmp/x $1
+else
+	unexpand --first-only --tabs=$width $1
+fi
