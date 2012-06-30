@@ -1,0 +1,4 @@
+#!/bin/sh
+cd `dirname $0`
+coffee meld.coffee -t template/get.dot template/$1.coffee | sh
+
