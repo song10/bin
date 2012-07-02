@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PRJS="https://github.com/song10/ubfavor.git|$HOME/wrk/ubfavor https://github.com/song10/bin.git|$HOME/bin $HOME/Dropbox/repo/my|$HOME/wrk/xman"
+PRJS="https://github.com/song10/ubfavor.git|$HOME/wrk/ubfavor https://github.com/song10/bin.git|$HOME/bin $HOME/Dropbox/repo/my/xman.git|$HOME/wrk/xman"
 HERE=`pwd`
 
 _status () {
