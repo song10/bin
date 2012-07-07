@@ -15,6 +15,10 @@ npmmod="\
  jquery\
  connect\
  dnode\
+ stylus\
+ clientjade\
+ cradle\
+ underscore\
 "
 _=`which curl` \
 	|| sudo apt-get install -y curl
