@@ -20,17 +20,21 @@ npmmod="\
  cradle\
  underscore\
 "
-_=`which curl` \
-	|| sudo apt-get install -y curl
 
-_=`which npm` \
-	|| curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
+expr "$*" : '.* \?-f \?' > /dev/null && \
+ rm -f `which npm`
 
 expr "$*" : '.* \?debug \?' > /dev/null && \
  npmflags="$npmflags -ddd"
 
 expr "$*" : '.* \?remove \?' > /dev/null && \
  npmcmd=remove && npmmod="$npmmod npm"
+
+_=`which curl` \
+	|| sudo apt-get install -y curl
+
+_=`which npm` \
+	|| curl http://npmjs.org/install.sh | npm_config_prefix=$HOME/opt sh
 
 _npm () {
 	echo
