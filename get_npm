@@ -6,7 +6,7 @@ npmmod="\
  js2coffee\
  nopt\
  dot\
- express@2\
+ express\
  jade\
  less\
  html2jade\
