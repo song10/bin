@@ -1,0 +1,14 @@
+#!/bin/sh
+
+nobak=false
+
+expr "$*" : '.* \?-nobak \?' > /dev/null && \
+	nobak=true
+
+for x in `find -name '*.js'`; do
+	y=${x%.*}.coffee
+	js2coffee $x >/tmp/x
+	mv /tmp/x $y
+	leadingspace2tab $y 2 -i
+	if ! $nobak; then mv $x $x.bak; fi
+done
