@@ -10,5 +10,5 @@ for x in `find -name '*.js'`; do
 	js2coffee $x >/tmp/x
 	mv /tmp/x $y
 	leadingspace2tab $y 2 -i
-	if ! $nobak; then mv $x $x.bak; fi
+	if $nobak; then rm -f $x; else mv $x $x.bak; fi
 done
