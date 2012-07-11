@@ -1,0 +1,32 @@
+#!/bin/sh
+echo "*** rescure ***"
+echo "sudo rm -f /etc/X11/xorg.conf && sudo apt-get purge nvidia-current nvidia-settings && sudo apt-get autoremove"
+echo ===============
+
+echo "*** current-update ***"
+echo "sudo apt-add-repository ppa:ubuntu-x-swat/x-updates"
+echo "sudo apt-get update"
+echo "sudo apt-get install nvidia-current"
+echo "glxinfo | grep OpenGL"
+echo ===============
+
+echo "Are you sure to reset nvidia driver? "
+read ans
+if test "yes" != "$ans"; then exit 0; fi
+
+sudo apt-get install nvidia-current
+echo 'Section "Screen"
+        Identifier      "Default Screen"
+        DefaultDepth    24
+EndSection
+
+Section "Module"
+        Load    "glx"
+EndSection
+
+Section "Device"
+        Identifier      "Default Device"
+        Driver  "nvidia"
+        Option  "NoLogo"        "True"
+EndSection
+' | sudo tee /etc/X11/xorg.conf
