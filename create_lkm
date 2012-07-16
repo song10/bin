@@ -1,0 +1,20 @@
+echo "sudo apt-get install build-essential linux-headers-"$(uname -r)
+sudo apt-get install module-assistant
+sudo m-a prepare
+
+namedir=$1
+if test -z $1; then namedir=lkm; fi
+mkdir -p $namedir
+cd $namedir
+
+wget http://blog.markloiseau.com/files/hello.c
+wget http://blog.markloiseau.com/files/Makefile
+make
+
+echo
+sudo insmod hello.ko
+tail -n1 /var/log/syslog
+
+echo
+sudo rmmod hello
+tail -n1 /var/log/syslog
