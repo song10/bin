@@ -1,3 +1,10 @@
+#!/bin/sh
+
+#
+# reference:
+#   http://blog.markloiseau.com/2012/04/hello-world-loadable-kernel-module-tutorial/
+#
+
 echo "sudo apt-get install build-essential linux-headers-"$(uname -r)
 sudo apt-get install module-assistant
 sudo m-a prepare
