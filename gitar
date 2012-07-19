@@ -1,2 +1,16 @@
-name=linux-2.6-$(git log master --pretty=format:"%h" -1)
-git archive --prefix $name/ master | bzip2 > ../$name.tar.bz2
+#!/bin/sh
+if test 2 -gt $#; then
+	echo `basename $0` "Prefix Output [PATH]"
+	exit 1
+fi
+
+if test 2 -eq $#; then
+	HEAD=HEAD
+else
+	HEAD=$3
+fi
+
+echo "git archive --prefix=$1/ $HEAD | bzip2 > $2.tar.bz2"
+git archive --prefix=$1/ $HEAD | bzip2 > $2.tar.bz2
+
+#name=linux-2.6-$(git log master --pretty=format:"%h" -1)

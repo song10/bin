@@ -24,3 +24,4 @@ coffee:~/wrk/js/coffee
 tc:~/tc
 kill:~/tmp/kill
 download:~/Downloads
+train:~/wrk/training

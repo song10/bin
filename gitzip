@@ -1,0 +1,14 @@
+#!/bin/sh
+if test 2 -gt $#; then
+	echo `basename $0` "Prefix Output [PATH]"
+	exit 1
+fi
+
+if test 2 -eq $#; then
+	HEAD=HEAD
+else
+	HEAD=$3
+fi
+
+echo "git archive --format=zip --prefix=$1/ -o $2 $HEAD"
+git archive --format=zip --prefix=$1/ -o $2 $HEAD
