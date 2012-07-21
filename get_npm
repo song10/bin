@@ -19,6 +19,7 @@ npmmod="\
  clientjade\
  cradle\
  underscore\
+ node-gyp
 "
 
 expr "$*" : '.* \?-f \?' > /dev/null && \
