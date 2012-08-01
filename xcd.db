@@ -5,7 +5,7 @@ bin:~/bin
 flash:~/tmp/flash
 gdb:~/tmp/gdb/bin
 startup:~/wrk/startup
-linux:~/wrk/linux-2.6
+linux:~/wrk/linux
 node:~/wrk/node
 uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
