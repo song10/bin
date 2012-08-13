@@ -1,4 +1,10 @@
 #!/bin/sh
-cd `dirname $0`
-coffee meld.coffee -t template/get.dot template/$1.coffee | sh
+if test 1 -gt $#; then
+  echo "  Usage: " $(basename $0) SOME_THING
+  exit 1;
+fi
 
+cd `dirname $0`
+goal=$1
+shift
+coffee meld.coffee -t template/get.dot template/$goal.coffee $* | sh
