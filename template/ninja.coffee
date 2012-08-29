@@ -3,7 +3,7 @@ exports.json =
         name : "ninja"
         template : "get.dot"
         path : "~/wrk"
-        init : ""
+        init : "sudo apt-get install -y re2c"
         get : "git clone https://github.com/martine/ninja.git"
         build : """
             ./bootstrap.py
