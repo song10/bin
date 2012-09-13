@@ -1,0 +1,2 @@
+KEYURL=$1
+wget -q $KEYURL -O- | sudo apt-key add -
