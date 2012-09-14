@@ -7,4 +7,4 @@ fi
 cd `dirname $0`
 goal=$1
 shift
-coffee meld.coffee -t template/get.dot template/$goal.coffee $* | sh
+coffee meld.coffee template/$goal.coffee $* | sh
