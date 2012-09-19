@@ -12,5 +12,5 @@ exports.json =
 				sudo wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
 				sudo apt-get update
 			fi
-			sudo apt-get install virtualbox-4.2 dkms
+			sudo apt-get -y install virtualbox-4.2 dkms
 			"""
