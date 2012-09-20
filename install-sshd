@@ -1,0 +1,12 @@
+#!/bin/sh
+sudo yum install openssh-server
+sudo groupadd sshusers
+sudo usermod -a -G sshusers $USER
+echo "PermitRootLogin no
+AllowGroups sshusers" | sudo tee -a /etc/ssh/sshd_config
+sudo systemctl enable sshd.service
+sudo systemctl start sshd.service
+
+#echo "PasswordAuthentication no
+#PubkeyAuthentication yes" | sudo tee -a /etc/ssh/sshd_config
+#systemctl restart sshd.service
