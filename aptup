@@ -1,3 +1,15 @@
 #!/bin/sh
-sudo apt-get update
-sudo apt-get -y dist-upgrade
+while :; do
+  dmesg | head -9 | grep -i ubuntu > /dev/null
+  if [ 0 -eq $? ]; then
+    sudo apt-get update
+    sudo apt-get -y dist-upgrade
+    break
+  fi
+
+  dmesg | head -9 | grep -i 'red hat' > /dev/null
+  if [ 0 -eq $? ]; then
+    sudo yum -y update
+    break
+  fi
+done
