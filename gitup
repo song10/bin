@@ -1,26 +1,37 @@
 #!/bin/sh
 
-if test $# -lt 2 ; then
-	echo need 2 arguments;
-	exit 1;
-fi
+PRJS="https://github.com/song10/ubfavor.git|$HOME/wrk/ubfavor https://github.com/song10/bin.git|$HOME/bin $HOME/Dropbox/repo/my/xman.git|$HOME/wrk/xman"
+HERE=`pwd`
 
-_gitup () {
-	GIT=$1
-	DIR=$2
-	if [ ! -d "$DIR" ]; then
-		git clone "$GIT" "$DIR"
-	else
-		cd "$DIR"
-		_=$(git status|grep Changes) && x=true || x=false
-		if $x; then _=$(git stash); fi
-		git pull --rebase
-		if $x; then _=$(git stash pop); fi
-	fi
+_status () {
+	PS="$HOME $HOME/bin $HOME/wrk/ubfavor $HOME/wrk/xman"
+	for x in $PS; do
+		echo
+		cd $x
+		pwd
+		git status
+	done
+	x=$?
+	cd $HERE
+	return $x
 }
 
-if [ -n "$ROOT" ]; then
-	cd $ROOT
+if test "st" = "$1"; then
+	status
+	exit $?
 fi
 
-_gitup $*
+cmd="gituphere https://github.com/song10/ubhome.git"
+echo $cmd
+cd $HOME && $cmd
+cd $HERE
+
+for x in $PRJS; do
+	gn=$(echo $x|cut -d'|' -f1)
+	pa=$(echo $x|cut -d'|' -f2)
+	cmd="gitupx $gn $pa"
+	echo $cmd
+	$cmd
+done
+
+_status
