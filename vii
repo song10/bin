@@ -3,6 +3,13 @@ if (1 > @ARGV) { print "no file to edit\n"; exit; }
 my $arg = join(' ', @ARGV);
 my ($fn, $ln);
 while (1) {
+	$ln = 1;
+	@words = split ':', $arg;
+	if (1 < @words and $words[1] =~ m|(\d+)|) {
+		($fn,$ln)=($words[0],$1);
+		last;
+	}
+
 	if ($arg =~ m|([\w/:\.\-\$]+):(\d+)|) {
 		($fn,$ln)=($1,$2);
 		last;
