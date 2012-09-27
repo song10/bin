@@ -1,0 +1,9 @@
+#!/bin/perl
+if (1 < @ARGV) {
+  if ($ARGV[1] !~ m|^(\w+)://|) {
+     $ARGV[1] = "http://" . $ARGV[1];
+  }
+}
+$cmd = join(' ', "wbemcli", @ARGV);
+print "$cmd\n";
+exec $cmd;
