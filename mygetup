@@ -1,6 +1,6 @@
 #!/bin/sh
 gets='ninja node ringojs perl6'
 for x in $gets; do
-	echo "myget $x"
-	myget $x
+	echo "myget $x $*"
+	myget $x $*
 done
