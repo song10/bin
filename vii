@@ -28,6 +28,11 @@ if (defined($ln)) {
 	$ln="+$ln";
 }
 
+`which vim`;
+if ($?) {
+	`sudo apt-get -y install vim`;
+}
+
 if (defined($ENV{'MyVerbose'})) {
 	print "fn: '$fn'\n";
 	print "ln: '$ln'\n";
