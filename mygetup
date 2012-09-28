@@ -4,3 +4,8 @@ for x in $gets; do
 	echo "myget $x $*"
 	myget $x $*
 done
+
+gets='ninja node ringo perl6'
+for x in $gets; do
+  $x --version
+done
