@@ -4,7 +4,7 @@ exports.json =
         template: "get.dot"
         path: "~/wrk"
         init: """
-            sudo apt-get -y install ant ivy
+            sudo apt-get -y install ant ivy default-jdk
             mkdir -p ~/.ant/lib
             cp /usr/share/java/ivy.jar ~/.ant/lib/
             """
