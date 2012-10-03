@@ -1,3 +1,5 @@
+down:~/Downloads
+drop:~/Dropbox
 xman:~/wrk/xman
 ubfavor:~/wrk/ubfavor
 express:~/wrk/express
@@ -23,7 +25,6 @@ uitron:~/tmp/uitron/test
 coffee:~/wrk/js/coffee
 tc:~/tc
 kill:~/tmp/kill
-download:~/Downloads
 train:~/wrk/training
 ncurses:~/wrk/ncurses
 insyde:~/insyde
