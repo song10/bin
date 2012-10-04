@@ -1,0 +1,10 @@
+#!/bin/sh
+which pandoc > /dev/null
+if [ 0 -ne $? ]; then
+  sudo apt-get -y install pandoc
+fi
+
+for x in $*; do
+  echo "pandoc -f markdown -s -S -t mediawiki -o $x.mw $x"
+  pandoc -t markdown -s -S -f mediawiki -o $x.md $x
+done
