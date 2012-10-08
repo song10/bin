@@ -1,11 +1,15 @@
 #!/bin/sh
-gets='ninja node ringojs perl6'
+gets='ninja node'
+if [ '-a' = "$1" ]; then
+  gets="$gets ringojs perl6"
+  shift
+fi
 for x in $gets; do
 	echo "myget $x $*"
 	myget $x $*
 done
 
-gets='ninja node ringo perl6'
 for x in $gets; do
+  if [ "ringojs" = "$x" ]; then x='ringo'; fi
   $x --version
 done
