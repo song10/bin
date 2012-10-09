@@ -11,5 +11,5 @@ done
 
 for x in $gets; do
   if [ "ringojs" = "$x" ]; then x='ringo'; fi
-  $x --version
+  echo "$x:" $($x --version)
 done
