@@ -3,23 +3,23 @@
 npmcmd=install
 npmmod="\
  coffee-script\
- js2coffee\
- nopt\
- dot\
  express\
  jade\
- less\
+ stylus\
+ everyauth
+ cradle\
+ node-gyp\
  html2jade\
+ js2coffee\
+ dot\
+ nopt\
  markdown\
+ clientjade\
  jslint\
  jquery\
  connect\
  dnode\
- stylus\
- clientjade\
- cradle\
  underscore\
- node-gyp
 "
 
 expr "$*" : '.* \?-f \?' > /dev/null && \
