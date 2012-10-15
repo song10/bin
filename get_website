@@ -1,0 +1,11 @@
+#!/bin/sh
+# http://www.thegeekstuff.com/2009/09/the-ultimate-wget-download-guide-with-15-awesome-examples/
+
+if [ 1 -lt $# ]; then
+	extra="-P $2"
+else
+	extra=""
+fi
+
+echo "wget --mirror -p --convert-links $extra $1"
+wget --mirror -p --convert-links $extra $1
