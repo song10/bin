@@ -3,7 +3,7 @@ exports.json =
         name: "rakudo"
         template: "get.dot"
         path: "~/wrk"
-        init: ""
+        init: "sudo apt-get install -y libreadline-dev"
         get: "git clone https://github.com/rakudo/rakudo.git"
         build: """
             perl Configure.pl --gen-parrot --gen-nqp
