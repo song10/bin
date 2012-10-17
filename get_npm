@@ -3,6 +3,7 @@
 npmcmd=install
 npmmod="\
  coffee-script\
+ node-inspector\
  express\
  jade\
  stylus\
