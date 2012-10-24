@@ -12,4 +12,16 @@ while :; do
     sudo yum -y update
     break
   fi
+
+  # be smart
+  _=$(which apt-get)
+  if [ 0 -eq $? ]; then
+    sudo apt-get update
+    sudo apt-get -y dist-upgrade
+    break
+  fi
+
+  # quit
+  echo "unknow distro! abort."
+  break
 done
