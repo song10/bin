@@ -48,3 +48,5 @@ echo 'set mouse=' >> ~/.vimrc
 echo 'highlight LineNr ctermfg=blue' >> ~/.vimrc
 echo 'set foldmethod=expr' >> ~/.vimrc
 echo 'set foldcolumn=0' >> ~/.vimrc
+
+patch -N -r - ~/wrk/pct.vim/.vim/bundle/neocomplcache/plugin/neocomplcache.vim ~/bin/patch/vim-000.patch 2>&1 > /dev/null
