@@ -3,16 +3,16 @@
 npmcmd=install
 npmmod="\
  coffee-script\
- node-inspector\
+ dot\
  express\
  jade\
  stylus\
  everyauth
  cradle\
+ node-inspector\
  node-gyp\
  html2jade\
  js2coffee\
- dot\
  nopt\
  markdown\
  clientjade\
