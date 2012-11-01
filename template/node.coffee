@@ -3,7 +3,7 @@ exports.json =
         name: "node"
         template: "get.dot"
         path: "~/wrk"
-        init: "sudo apt-get install -y libssl-dev libltdl-dev"
+        init: "sudo apt-get install -y libssl-dev libltdl-dev systemtap-sdt-dev"
         get: "git clone https://github.com/joyent/node.git"
         build: """
             ./configure --prefix=$HOME/opt
