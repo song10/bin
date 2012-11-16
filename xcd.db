@@ -39,3 +39,4 @@ lua:~/lang/lua
 lang:~/lang
 eino:~/lang/js/einoman
 einoman:~/lang/js/einoman
+edk2:~/edk2.x64/trunk/edk2
