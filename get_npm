@@ -12,9 +12,9 @@ npmmod="\
  js2coffee\
  "
 
-function dummy {
+dummy () {
 npmmod="\
- everyauth
+ everyauth\
  cradle\
  node-inspector\
  node-gyp\
