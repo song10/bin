@@ -6,13 +6,18 @@ npmmod="\
  dot\
  express\
  jade\
+ blade\
  stylus\
+ html2jade\
+ js2coffee\
+ "
+
+function dummy {
+npmmod="\
  everyauth
  cradle\
  node-inspector\
  node-gyp\
- html2jade\
- js2coffee\
  nopt\
  markdown\
  clientjade\
@@ -21,7 +26,8 @@ npmmod="\
  connect\
  dnode\
  underscore\
-"
+ "
+}
 
 expr "$*" : '.* \?-f \?' > /dev/null && \
  rm -f `which npm`
