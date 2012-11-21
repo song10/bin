@@ -1,0 +1,3 @@
+#!/bin/sh
+cd ~/my/song10.github.com
+jekyll --server
