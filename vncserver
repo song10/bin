@@ -1,0 +1,5 @@
+#!/bin/sh
+echo "ps wwwwaux | grep auth"
+#ps wwwwaux | grep auth
+#echo "sudo x11vnc -safer -once -nopw -auth /var/run/lightdm/root/:0 -display :0"
+sudo x11vnc -safer -once -nopw -auth /var/run/lightdm/root/:0 -display :0
