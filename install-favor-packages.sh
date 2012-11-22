@@ -7,3 +7,4 @@ sudo apt-get -y install \
  screen \
  nodejs \
  npm \
+ p7zip-full \
