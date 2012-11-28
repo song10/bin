@@ -1,0 +1,4 @@
+#!/bin/sh
+port=8900
+if [ -n "$1" ]; then port=$1; fi
+exec shellinaboxd -t -s /:AUTH:HOME:/bin/bash -p $port
