@@ -39,7 +39,7 @@ ln -s -f `pwd`/.vim ~/
 # patch
 #sed -i '/echo.\+"withdrawn"/ d' ~/.vim/bundle/man-page-view/plugin/withdrawn.vim
 echo 'set nobackup' >> ~/.vimrc
-echo 'set ts=4' >> ~/.vimrc
+echo 'set ts=2' >> ~/.vimrc
 echo 'set noexpandtab' >> ~/.vimrc
 echo '" highlight tabs and trailing spaces' >> ~/.vimrc
 echo 'set listchars=tab:>-,trail:-' >> ~/.vimrc
