@@ -1,0 +1,4 @@
+#!/bin/sh
+aptup
+gitup
+mygetup -a
