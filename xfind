@@ -1,0 +1,6 @@
+#!/usr/bin/env perl
+my $name = $ARGV[0];
+my $patt = $ARGV[1];
+print ("find -name '$name' -exec grep -Hn \{\} -e '$patt' \\; | grep '$patt'" . "\n");
+my $cmd = "find -name '$name' -exec grep -Hn \{\} -e '$patt' \\; | grep '$patt'";
+system ($cmd);
