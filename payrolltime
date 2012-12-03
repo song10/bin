@@ -1,0 +1,40 @@
+#!/bin/sh
+###
+exec coffee $0 $*
+###
+
+fs = require 'fs'
+sys = require 'sys'
+
+print = console.log
+#homeDir = () -> `process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME']`
+
+homeDir = process.env[if process.platform is 'win32' then 'USERPROFILE' else 'HOME']
+log = fs.openSync "#{homeDir}/.payrolltime", 'a+'
+#fs.closeSync(log)
+
+fileName = "#{homeDir}/.payrolltime"
+startByte = 0
+
+stats = fs.fstatSync log
+startByte = stats.size
+
+if startByte is 0
+	now = new Date
+	fs.writeSync log, (now.toJSON() + "\n")
+else
+	now = new Date
+	fs.writeSync log, (now.toJSON() + "\n")
+	###
+	fs.watchFile fileName, (curr, prev) ->
+		fs.stat fileName, (err, stats) ->
+			throw err if err
+			fs.createReadStream(fileName,
+				start: startByte
+				end: stats.size
+			).addListener "data", (lines) ->
+				sys.puts(lines)
+				startByte = stats.size
+	###
+
+fs.closeSync(log)
