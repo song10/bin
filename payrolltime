@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 use strict;
-my $last = `tail -n1 ~/.payrolltime`;
+my $last = `tail -n1 ~/.payrolltime 2>/dev/null`;
 #chomp $last;
 $last =~ m/^(\S+) (\S+)/;
 my ($ldate, $ltime) = ($1, $2);

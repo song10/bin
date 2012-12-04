@@ -1,5 +1,6 @@
 #!/bin/sh
+sudo echo
 payrolltime
-aptup
 gitup
+aptup
 mygetup -a
