@@ -1,4 +1,5 @@
 #!/bin/sh
+payrolltime
 aptup
 gitup
 mygetup -a
