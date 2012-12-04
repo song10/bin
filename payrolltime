@@ -12,3 +12,5 @@ my ($ndate, $ntime) = ($1, $2);
 if ($ndate ne $ldate) {
   `date '+%Y-%m-%d %H:%M' >> ~/.payrolltime`;
 }
+
+system('tail -n1 ~/.payrolltime');
