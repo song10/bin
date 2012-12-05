@@ -5,6 +5,5 @@ sudo apt-get -y install \
  astyle \
  tidy \
  screen \
- nodejs \
- npm \
  p7zip-full \
+ htop \
