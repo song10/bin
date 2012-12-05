@@ -1,8 +1,8 @@
 #!/bin/sh
 payrolltime && exit
-
 if [ 2 = $? ]; then opt=-a; fi
-sudo echo
+
+sudo echo -n # just to ask sudo password
 gitup
 aptup
 mygetup $opt
