@@ -1,6 +1,8 @@
 #!/bin/sh
+payrolltime && exit
+
+if [ 2 = $? ]; then opt=-a; fi
 sudo echo
-payrolltime
 gitup
 aptup
-mygetup -a
+mygetup $opt

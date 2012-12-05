@@ -1,5 +1,6 @@
 #!/usr/bin/env perl
 use strict;
+my $exit = 0; # not the first time per day
 my $last = `tail -n1 ~/.payrolltime 2>/dev/null`;
 #chomp $last;
 $last =~ m/^(\S+) (\S+)/;
@@ -10,7 +11,12 @@ $now =~ m/^(\S+) (\S+)/;
 my ($ndate, $ntime) = ($1, $2);
 #print "$ndate, $ntime\n";
 if ($ndate ne $ldate) {
-  `date '+%Y-%m-%d %H:%M' >> ~/.payrolltime`;
+  `echo '$now' >> ~/.payrolltime`;
+  $exit = 1; # the first time per day
+  if ((substr $ndate, 0, 7) ne (substr $ldate, 0, 7)) {
+    $exit = 2; # the first time per month
+  }
 }
 
 system('tail -n1 ~/.payrolltime');
+exit $exit
