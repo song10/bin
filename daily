@@ -1,4 +1,6 @@
 #!/bin/sh
+if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
+
 payrolltime && exit
 if [ 2 = $? ]; then opt=-a; fi
 
