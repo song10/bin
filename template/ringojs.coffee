@@ -8,7 +8,12 @@ exports.json =
 			mkdir -p ~/.ant/lib
 			cp /usr/share/java/ivy.jar ~/.ant/lib/
 			"""
-		get: "git clone git://github.com/ringo/ringojs.git"
+		clone: "git clone git://github.com/ringo/ringojs.git"
+		checkout: """
+			git reset --hard
+			git co master
+			"""
+		pull: "git pull --rebase"
 		build: """
 			ant update
 			ant jar

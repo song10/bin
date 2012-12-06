@@ -8,14 +8,14 @@ T={{=it.json.name}}
 {{? !it.force}}build=yes{{?}}
 if [ -d $T/ ]; then
   cd $T
-  git reset --hard
-  x=`git pul`
+  {{=it.json.checkout}}
+  x=`{{=it.json.pull}}`
 {{? !it.force}}
   expr "$x" : "Current.*up to date" > /dev/null && \
     build=no
 {{?}}
 else
-  {{=it.json.get}}
+  {{=it.json.clone}}
   cd $T/
 fi
 

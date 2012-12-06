@@ -4,7 +4,12 @@ exports.json =
 		template: "get.dot"
 		path: "~/wrk"
 		init: "sudo apt-get install -y libreadline-dev"
-		get: "git clone https://github.com/rakudo/rakudo.git"
+		clone: "git clone https://github.com/rakudo/rakudo.git"
+		checkout: """
+			git reset --hard
+			git co nom
+			"""
+		pull: "git pull --rebase"
 		build: """
 			perl Configure.pl --gen-parrot --gen-nqp
 			make
