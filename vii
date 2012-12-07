@@ -1,22 +1,22 @@
 #!/usr/bin/perl
 if (1 > @ARGV) { print "no file to edit\n"; exit; }
+
 my $arg = join(' ', @ARGV);
 my ($fn, $ln);
 while (1) {
 	$ln = 1;
-	@words = split ':', $arg;
-	if (1 < @words and $words[1] =~ m|(\d+)|) {
+	@words = split ':| +', $arg;
+
+	# xxx:yyy...:ddd
+	if (2 < @words and $words[$#words] =~ m|(\d+)|) {
 		($fn,$ln)=($words[0],$1);
+#		($fn,$ln)=($1,$2);
 		last;
 	}
 
-	if ($arg =~ m|([\w/:\.\-\$]+):(\d+)|) {
-		($fn,$ln)=($1,$2);
-		last;
-	}
-	
-	if ($arg =~ m|([\w/:\.\-\$]+)\s+(\d+)|) {
-		($fn,$ln)=($1,$2);
+	# xxx:ddd
+	if (1 < @words and $words[1] =~ m|(\d+)|) {
+		($fn,$ln)=($words[0],$1);
 		last;
 	}
 
@@ -24,9 +24,7 @@ while (1) {
 	last;
 }
 
-if (defined($ln)) {
-	$ln="+$ln";
-}
+$ln="+$ln";
 
 `which vim`;
 if ($?) {
@@ -39,3 +37,11 @@ if (defined($ENV{'MyVerbose'})) {
 }
 
 system("vim $fn $ln");
+
+if (0) {
+	my $hostname = `hostname`;
+	chomp $hostname;
+	my $cmdln = "echo -ne '\\033]2;$hostname\\007'";
+	print "$cmdln\n";
+	system($cmdln);
+}
