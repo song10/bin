@@ -1,6 +1,9 @@
 #!/bin/sh
 
-npmcmd=install
+#npmcmd=install
+npmcmd=update
+if [ -n "$1" ]; then npmcmd=$1; fi
+
 npmmod="\
  coffee-script\
  dot\
