@@ -19,6 +19,7 @@ my ($ndate, $ntime) = ($1, $2);
 #
 # log currnet time if necessary, and count result
 #
+print "now: $ndate, last: $ldate\n";
 if ($ndate ne $ldate) {
   `echo -n '$now' >> ~/.payrolltime`;
   $exit = 1; # the first time per day
@@ -26,6 +27,6 @@ if ($ndate ne $ldate) {
     $exit = 2; # the first time per month
   }
 }
-
+print "exit: $exit\n";
 system('tail -n1 ~/.payrolltime');
 exit $exit
