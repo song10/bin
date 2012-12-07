@@ -1,0 +1,4 @@
+#!/bin/sh
+dst=$1
+src=$2
+meld $src $dst/$src
