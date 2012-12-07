@@ -1,5 +1,7 @@
 #!/bin/sh
 
+sudo echo -n # prefetch sudo permission
+
 R=$(readlink -f $(dirname $0)/../wrk)
 cd $R
 
