@@ -44,6 +44,7 @@ echo 'set noexpandtab' >> ~/.vimrc
 echo '" highlight tabs and trailing spaces' >> ~/.vimrc
 echo 'set listchars=tab:>-,trail:-' >> ~/.vimrc
 echo 'set nolist' >> ~/.vimrc
+echo 'set notitle' >> ~/.vimrc
 echo 'set mouse=' >> ~/.vimrc
 echo 'highlight LineNr ctermfg=blue' >> ~/.vimrc
 echo 'set foldmethod=expr' >> ~/.vimrc
