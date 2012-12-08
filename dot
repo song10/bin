@@ -1,0 +1,118 @@
+#Node 0.6 compatibility
+
+#Process arguments
+
+# turn outFile into a function that accepts the input filename and generates
+#	a Writable Stream 
+
+#Get input ready
+
+#Close all output streams
+cleanup = ->
+  for i of outStreams
+    outStreams[i].end()
+
+# Compile/render the Blade template from the input stream
+#	and write the output to the output stream, without closing it. 
+generate = (input, output, filename) ->
+  cOpts.filename = filename
+  str = ""
+  input.resume()
+  input.setEncoding "utf8"
+  input.on "data", (chunk) ->
+    str += chunk
+
+  input.on "end", ->
+    
+    #Compile the template
+    blade.compile str, cOpts, (err, tmpl) ->
+      throw err  if err
+      unless render
+        output.write tmpl.toString()
+        cleanup()  if ++done is total
+
+
+fs = require("fs")
+path = require("path")
+blade = require("../")
+program = require("commander")
+fs.existsSync = path.existsSync  unless fs.existsSync
+opts = {}
+try
+  package_ = JSON.parse(fs.readFileSync(__dirname + "/../package.json"))
+  program.version package_.version
+program.usage("[options] source_path destination_path").option("-R, --render", "renders the template and outputs HTML (default)").option("-C, --compile", "compile-only: output the compiled template").option("-l, --locals <str>", "JSON string to be used as the locals object").option("-L, --locals-file <file>", "require() path to a module exporting locals obj").option("-o, --compile-opts <str>", "JSON string to be used as the compiler's options").option("-d, --debug", "sets the compiler's debug option").option("-m, --minify", "sets the compiler's minify option").option "--no-include-source", "clears the compiler's includeSource option"
+program.on "--help", ->
+  x = ->
+    console.log.apply console, arguments_
+
+  x "Renders or compiles Blade templates."
+  x "\nIf a filename is `-` instead of an actual path, read from standard input or\nwrite to standard output."
+  x "includeSource compiler option is set by default."
+  x "\nExamples:"
+  x "\n\tRender a Blade template to stdout from stdin using the local variables\n\texported in a Node module (i.e. ./locals.js):"
+  x "\t$ blade -L ./locals - -"
+  x "\n\tRender a Blade template to stdout from stdin using the locals provided"
+  x "\t$ blade -l '{\"author\":\"Blake Miner\"}' - -"
+  x "\n\tCompile foo.blade and output the minified template to stdout:"
+  x "\t$ blade -C -m foo.blade -"
+  x "\n\tCompile and minify an entire directory of *.blade files:"
+  x "\t$ blade -C -m ./views ./public/views"
+  x()
+
+x =
+  "--cows": "Q293cyBzYXksICJNb28hIg=="
+  "--cake": "VGhlIGNha2UgaXMgYSBsaWUh"
+  "--jade": "V2h5IHdvdWxkIHlvdSB3YW50IHRvIGRlY3JlbWVudCBqYWRlIGxpa2UgdGhhdD8gIFRyeSBgKytqYWRlYCBuZXh0IHRpbWUu"
+  "--carla": "Q2FybGEgaXMgdGhlIGJlc3QgZ2lybCBpbiB0aGUgd2hvbGUgd2lkZSB3b3JsZCwgYW5kIEkgYW0gZ29pbmcgdG8gbWFycnkgaGVyIQ"
+
+for i of x
+  console.log new Buffer(x[i], "base64").toString()  if process.argv[2] is i
+throw new Error("This feature doesn't work yet.")  if process.argv[2] is "++jade"
+program.parse process.argv
+cOpts = (if program.compileOpts then JSON.parse(program.compileOpts) else includeSource: program.includeSource)
+render = not program.compile or program.render
+cOpts.debug = true  if program.debug
+cOpts.minify = true  if program.minify
+cOpts.includeSource = false  if program.includeSource is false
+locals = undefined
+if render
+  if program.locals
+    locals = JSON.parse(program.locals)
+  else if program.localsFile
+    program.localsFile = path.resolve(".", program.localsFile)
+    try
+      locals = require(program.localsFile)
+    catch e
+      console.error "Locals file not found:", program.localsFile
+  else
+    locals = {}
+inFile = program.args[0]
+outFile = program.args[1]
+getOutputStream = undefined
+outStreams = {}
+if not outFile? or outFile is "-"
+  getOutputStream = ->
+    process.stdout
+else if not fs.existsSync(outFile) or not fs.statSync(outFile).isDirectory()
+  getOutputStream = ->
+    return outStreams[outFile]  if outStreams[outFile]
+    outStreams[outFile] = fs.createWriteStream(outFile)
+else
+  getOutputStream = (inFile) ->
+    filename = outFile + "/" + ((if not inFile? then "blade" else path.basename(inFile, path.extname(inFile)))) + ((if render then ".html" else ".js"))
+    return outStreams[filename]  if outStreams[filename]
+    outStreams[filename] = fs.createWriteStream(filename)
+total = 1
+done = 0
+if not inFile? or inFile is "-"
+  generate process.stdin, getOutputStream(null), cOpts.filename
+else unless fs.existsSync(inFile)
+  throw new Error("Could not find input file: " + inFile)
+else if fs.statSync(inFile).isDirectory()
+  files = fs.readdirSync(inFile)
+  total = files.length
+  for i of files
+    if path.extname(files[i]) is ".blade"
+      file = inFile + "/" + files[i]
+      generate fs.createReadStream(file), getOutputStream(file), path.normalize(file)
