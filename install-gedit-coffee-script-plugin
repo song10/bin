@@ -1,0 +1,15 @@
+#!/bin/sh
+DIR="~/.local/share/gtksourceview-3.0/language-specs ~/.local/share/gtksourceview-2.0/language-specs /usr/share/gtksourceview-3.0/language-specs/ /usr/share/gtksourceview-2.0/language-specs/"
+for x in $DIR; do
+	if [ -d $x ]; then
+	  DIR=$x;
+	  break;
+	fi
+done
+#echo $DIR
+case $DIR in
+    /usr/* ) SUDO=sudo ;;
+esac
+
+$SUDO wget -O$DIR/coffee_script.lang https://raw.github.com/wavded/gedit-coffeescript/master/coffee_script.lang
+

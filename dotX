@@ -34,13 +34,19 @@ generate = (input, output, filename) ->
 
 fs = require("fs")
 path = require("path")
-blade = require("../")
+blade = require("blade")
 program = require("commander")
-fs.existsSync = path.existsSync  unless fs.existsSync
+
+fs.existsSync = path.existsSync ? fs.existsSync
+
 opts = {}
+
 try
   package_ = JSON.parse(fs.readFileSync(__dirname + "/../package.json"))
   program.version package_.version
+cache e
+  #blank
+
 program.usage("[options] source_path destination_path").option("-R, --render", "renders the template and outputs HTML (default)").option("-C, --compile", "compile-only: output the compiled template").option("-l, --locals <str>", "JSON string to be used as the locals object").option("-L, --locals-file <file>", "require() path to a module exporting locals obj").option("-o, --compile-opts <str>", "JSON string to be used as the compiler's options").option("-d, --debug", "sets the compiler's debug option").option("-m, --minify", "sets the compiler's minify option").option "--no-include-source", "clears the compiler's includeSource option"
 program.on "--help", ->
   x = ->
