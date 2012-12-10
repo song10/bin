@@ -1,7 +1,15 @@
 #!/usr/bin/env coffee
 
 # forward references
+fs = require 'fs'
+dot = require 'dot'
+path = require 'path'
+program = require 'commander'
+
 render = undefined
+total = undefined
+done = undefined
+locals = undefined
 
 #Close all output streams
 cleanup = ->
@@ -20,22 +28,17 @@ generate = (input, output, filename) ->
 
 	input.on "end", ->
 		#Compile the template
-		blade.compile str, cOpts, (err, tmpl) ->
-			throw err  if err
-			if render
-				tmpl locals, (err, html) ->
-					throw err  if err
-					output.write html
-					cleanup()  if ++done is total
-			else
-				output.write tmpl.toString()
-				cleanup()  if ++done is total
+		#tmpl = dot.template str, cOpts, locals
+		tmpl = dot.template str, undefined, locals
+		if render
+			html = tmpl locals
+			output.write html + "\n"
+			cleanup()  if ++done is total
+		else
+			output.write tmpl.toString() + "\n"
+			cleanup()  if ++done is total
 
 # main()
-fs = require 'fs'
-path = require 'path'
-blade = require 'blade'
-program = require 'commander'
 
 #Node 0.6 compatibility
 fs.existsSync = fs.existsSync ? path.existsSync
@@ -93,14 +96,15 @@ render = not program.compile or program.render
 cOpts.debug = true  if program.debug
 cOpts.minify = true  if program.minify
 cOpts.includeSource = false  if program.includeSource is false
-locals = undefined
 if render
 	if program.locals
 		locals = JSON.parse(program.locals)
 	else if program.localsFile
 		program.localsFile = path.resolve(".", program.localsFile)
 		try
+			console.log program.localsFile
 			locals = require(program.localsFile)
+			console.log locals
 		catch e
 			console.error "Locals file not found:", program.localsFile
 	else
