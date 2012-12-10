@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# coffee-script
+NAME=filetypes.coffeescript
+sudo wget -O /usr/share/geany/$NAME https://raw.github.com/czepol/geany-coffeescript-config/master/$NAME
+
+SUDO=
+DIR="$HOME/.local/share/gtksourceview-3.0/language-specs $HOME/.local/share/gtksourceview-2.0/language-specs /usr/share/gtksourceview-3.0/language-specs /usr/share/gtksourceview-2.0/language-specs"
+for x in $DIR; do
+	if [ -d $x ]; then
+	  DIR=$x;
+	  break;
+	fi
+done
+case $DIR in
+    /usr/* ) SUDO=sudo ;;
+esac
+NAME=coffee_script.lang
+echo "$SUDO wget -O $DIR/$NAME"
+if [ ! -e $DIR/$NAME ]; then
+  $SUDO wget -O$DIR/$NAME https://raw.github.com/wavded/gedit-coffeescript/master/$NAME
+fi
