@@ -7,7 +7,7 @@ exports.json =
 		clone: "git clone https://github.com/joyent/node.git"
 		checkout: """
 			git reset --hard
-			git co v0.8.15-release
+			git co v0.8.16-release || git co -b v0.8.16-release origin/v0.8.16-release
 			"""
 		pull: "git pull --rebase"
 		build: """
