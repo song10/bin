@@ -9,3 +9,4 @@ sudo apt-get -y install \
  htop \
  openssh-server \
  tig \
+ sshfs \
