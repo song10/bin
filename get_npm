@@ -15,6 +15,7 @@ npmmod="\
  js2coffee\
  sm\
  commander\
+ nopt\
  "
 
 dummy () {
@@ -23,7 +24,6 @@ npmmod="\
  cradle\
  node-inspector\
  node-gyp\
- nopt\
  markdown\
  clientjade\
  jslint\

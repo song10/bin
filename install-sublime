@@ -1,0 +1,17 @@
+#!/bin/sh
+mkdir -p ~/Downloads ~/opt/bin
+cd ~/Downloads
+wget -q -c "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2"
+cd ~/opt
+tar jxf ~/Downloads/Sublime\ Text\ 2.0.1\ x64.tar.bz2 
+mv Sublime\ Text\ 2/ SublimeText2/
+cd ~/opt/bin
+ln -sf ../SublimeText2/sublime_text
+
+sed -i '/{/ a\
+	"//color_scheme": "Packages/Color Scheme - Default/Slush \& Poppies.tmTheme",\
+	"font_size": 12,\
+	"tab_size": 2,\
+	"draw_white_space": "all",\
+	"trim_trailing_white_space_on_save": true'\
+	~/.config/sublime-text-2/Packages/User/Preferences.sublime-settings

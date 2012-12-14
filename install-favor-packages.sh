@@ -7,3 +7,5 @@ sudo apt-get -y install \
  screen \
  p7zip-full \
  htop \
+ openssh-server \
+ tig \
