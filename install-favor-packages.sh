@@ -10,3 +10,5 @@ sudo apt-get -y install \
  openssh-server \
  tig \
  sshfs \
+ dos2unix \
+ geany \
