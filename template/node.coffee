@@ -13,7 +13,7 @@ exports.json =
 		build: """
 			mkdir -p $HOME/opt
 			./configure --prefix=$HOME/opt --ninja
-			sed -i 's/#define NODE_VERSION_IS_RELEASE 0/#define NODE_VERSION_IS_RELEASE 1/' src/node_version.h
+			#sed -i 's/#define NODE_VERSION_IS_RELEASE 0/#define NODE_VERSION_IS_RELEASE 1/' src/node_version.h
 			make
 			make install
 			#ln -f -s ~/wrk/node/deps/npm/bin/npm-cli.js ~/opt/bin/npm
