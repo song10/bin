@@ -4,8 +4,8 @@ if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
 payrolltime && exit
 if [ 2 = $? ]; then opt=-a; fi
 
-tabtitle $HOSTNAME
+title
 sudo echo -n # just to ask sudo password
-gitup
-aptup
 mygetup $opt
+aptup
+gitup
