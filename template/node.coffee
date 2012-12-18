@@ -3,7 +3,7 @@ exports.json =
 		name: "node"
 		template: "get.dot"
 		path: "~/wrk"
-		init: "sudo apt-get install -y libssl-dev libltdl-dev systemtap-sdt-dev"
+		init: "sudo apt-get install -y libssl-dev libltdl-dev systemtap-sdt-dev checkinstall"
 		clone: "git clone https://github.com/joyent/node.git"
 		checkout: """
 			git reset --hard
@@ -11,10 +11,9 @@ exports.json =
 			"""
 		pull: "git pull --rebase"
 		build: """
-			mkdir -p $HOME/opt
-			./configure --prefix=$HOME/opt --ninja
-			#sed -i 's/#define NODE_VERSION_IS_RELEASE 0/#define NODE_VERSION_IS_RELEASE 1/' src/node_version.h
+			rm -f *.deb *.tgz
+			./configure --ninja
 			make
-			make install
-			#ln -f -s ~/wrk/node/deps/npm/bin/npm-cli.js ~/opt/bin/npm
+			sudo checkinstall make install
+			cp *.deb ~/Dropbox/Public/
 			"""
