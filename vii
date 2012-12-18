@@ -10,7 +10,11 @@ while (1) {
 	# xxx:yyy...:ddd
 	if (2 < @words and $words[$#words] =~ m|(\d+)|) {
 		($fn,$ln)=($words[0],$1);
-#		($fn,$ln)=($1,$2);
+		# ...:35:18:
+		my $char = substr $arg, -1;
+		if (':' == $char and $words[$#words-1] =~ m|(\d+)|) {
+				$ln = $1;
+		}
 		last;
 	}
 
