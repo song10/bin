@@ -1,4 +1,14 @@
-#!/bin/sh
-dst=$1
-src=$2
-meld $src $dst/$src
+#!/usr/bin/env perl
+use strict;
+my $src = $ARGV[0];
+my $lev = $ARGV[1];
+my $dst = $ARGV[2];
+print "level=$lev\n";
+my @wrd = split /\//, $src;
+#foreach (@wrd) { print "'$_'\n"; }
+if ('' == $wrd[0]) { $lev++; }
+splice(@wrd,0,$lev);
+my $rel = join '/', @wrd;
+my $cmd = "meld $src $dst/$rel";
+print "$cmd\n";
+system($cmd);
