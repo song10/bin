@@ -6,7 +6,8 @@ PRJS="https://github.com/song10/bin.git|$HOME/bin"
 HERE=`pwd`
 
 _status () {
-	PS="$HOME $HOME/bin $HOME/wrk/ubfavor"
+	PS="$HOME $HOME/bin"
+#	PS="$PS $HOME/wrk/ubfavor"
 #	PS="$PS $HOME/wrk/xman"
 	for x in $PS; do
 		echo
