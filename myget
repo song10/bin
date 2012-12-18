@@ -1,7 +1,20 @@
 #!/bin/sh
+if [ '-y' = "$1" ]; then
+	answer='y'
+	shift
+fi
+
 if test 1 -gt $#; then
-  echo "  Usage: " $(basename $0) SOME_THING
-  exit 1;
+	echo "  Usage: " $(basename $0) SOME_THING
+	exit 1;
+fi
+
+if [ '' = "$answer" ]; then
+	read -p "are you sure to build locally? (N/y): " answer
+fi
+
+if [ ! 'y' = "$answer" ]; then
+	exit 0;
 fi
 
 cd `dirname $0`

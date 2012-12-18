@@ -1,15 +1,23 @@
 #!/bin/sh
 gets='ninja node'
+
 if [ '-a' = "$1" ]; then
-  gets="$gets ringojs perl6 node8"
-  shift
+	gets="$gets ringojs perl6 node8"
+	shift
 fi
+
+if [ '-y' = "$1" ]; then
+	opt="$opt -y"
+	shift
+fi
+
 for x in $gets; do
-	echo "myget $x $*"
-	myget $x $*
+	cmd="myget $opt $x $*"
+	echo $cmd
+	$cmd
 done
 
 for x in $gets; do
-  if [ "ringojs" = "$x" ]; then x='ringo'; fi
-  echo "$x:" $($x --version)
+	if [ "ringojs" = "$x" ]; then x='ringo'; fi
+	echo "$x:" $($x --version)
 done
