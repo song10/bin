@@ -1,0 +1,46 @@
+#!/bin/sh
+if [ -z "$STY" ]; then
+	TYPE='tab'
+else
+	TYPE='scr'
+fi
+
+case $1 in
+	"tab")
+		# d4 type
+		shift
+		;;
+	"scr")
+		TYPE='scr'
+		shift
+		;;
+	"all")
+		TYPE='tab scr'
+		shift
+		;;
+	*)
+		:
+	;;
+esac
+
+if [ -z "$1" ]; then
+	VALUE=`hostname`
+else
+	VALUE="$1"
+fi
+
+#echo "set '$TYPE' title: '$VALUE'"
+
+for x in $TYPE; do
+	case $x in
+		"tab")
+			printf "\033]2;$VALUE\007"
+			;;
+		"scr")
+			printf '\033k'$VALUE'\033\\'
+			;;
+		*)
+			:
+		;;
+	esac
+done
