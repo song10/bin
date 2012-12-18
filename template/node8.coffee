@@ -3,7 +3,7 @@ exports.json =
 		name: "node"
 		template: "get.dot"
 		path: "~/wrk"
-		init: "sudo apt-get install -y libssl-dev libltdl-dev systemtap-sdt-dev"
+		init: "sudo apt-get install -y libssl-dev libltdl-dev systemtap-sdt-dev checkinstall"
 		clone: "git clone https://github.com/joyent/node.git"
 		checkout: """
 			git reset --hard
@@ -11,8 +11,11 @@ exports.json =
 			"""
 		pull: "git pull --rebase"
 		build: """
-			mkdir -p $HOME/opt2
-			./configure --prefix=$HOME/opt2
+			./configure
 			make
-			make install
+			sudo checkinstall make install
+			FN0=`ls *.deb`
+			EN="${FN0##*.}"
+			FN="${FN0%.*}"
+			echo cp $FN0 ~/Dropbox/Public/${FN}_v0_8.$EN
 			"""
