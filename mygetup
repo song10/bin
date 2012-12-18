@@ -1,7 +1,7 @@
 #!/bin/sh
 gets='ninja node'
 if [ '-a' = "$1" ]; then
-  gets="$gets ringojs perl6"
+  gets="$gets ringojs perl6 node8"
   shift
 fi
 for x in $gets; do

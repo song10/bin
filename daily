@@ -2,7 +2,7 @@
 if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
 
 payrolltime && exit
-if [ 2 = $? ]; then opt=-a; fi
+if [ 2 = $? ]; then opt='-a -f'; fi
 
 title
 sudo echo -n # just to ask sudo password
