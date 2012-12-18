@@ -3,7 +3,7 @@ mkdir -p ~/Downloads ~/opt/bin
 cd ~/Downloads
 wget -q -c "http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%202.0.1%20x64.tar.bz2"
 cd ~/opt
-tar jxf ~/Downloads/Sublime\ Text\ 2.0.1\ x64.tar.bz2 
+tar jxf ~/Downloads/Sublime\ Text\ 2.0.1\ x64.tar.bz2
 mv Sublime\ Text\ 2/ SublimeText2/
 cd ~/opt/bin
 ln -sf ../SublimeText2/sublime_text
