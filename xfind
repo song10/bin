@@ -1,6 +1,10 @@
 #!/usr/bin/env perl
+my $dir = '.';
+if (2 < @ARGV) {
+		($dir) = splice @ARGV, 0, 1;
+}
 my $name = $ARGV[0];
 my $patt = $ARGV[1];
-print ("find -name '$name' -exec grep -Hn \{\} -e '$patt' \\; | grep '$patt'" . "\n");
-my $cmd = "find -name '$name' -exec grep -Hn \{\} -e '$patt' \\; | grep '$patt'";
+my $cmd = "find $dir -name '$name' -exec grep -Hn \{\} -e '$patt' \\; | grep '$patt'";
+print ("$cmd\n");
 system ($cmd);
