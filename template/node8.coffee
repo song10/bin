@@ -17,5 +17,5 @@ exports.json =
 			FN0=`ls *.deb`
 			EN="${FN0##*.}"
 			FN="${FN0%.*}"
-			echo cp $FN0 ~/Dropbox/Public/${FN}_v0_8.$EN
+			cp $FN0 ~/Dropbox/Public/${FN}_v0_8.$EN
 			"""
