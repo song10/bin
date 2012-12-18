@@ -1,0 +1,50 @@
+#!/bin/sh
+
+# install required packages
+sudo apt-get install -y \
+	git-core \
+	libncurses5 \
+	libncurses5-dev \
+	libelf-dev \
+	asciidoc \
+	binutils-dev \
+	linux-source \
+	libncurses5 \
+	libncurses5-dev \
+	fakeroot \
+	build-essential \
+	crash \
+	kexec-tools \
+	makedumpfile \
+	kernel-wedge \
+	kernel-package \
+	linux-source
+
+# unpack source
+mkdir -p ~/tmp
+cd ~/tmp
+if [ ! -d linux-source-3.7.0/ ]; then
+	tar jxf /usr/src/linux-source-3.7.0.tar.bz2
+fi
+cd linux-source-3.7.0/
+
+# configure
+if [ ! -e .config ]; then
+	cp -vi /boot/config-`uname -r` .config
+fi
+make oldconfig
+make localmodconfig
+make menuconfig
+
+# pack
+export CONCURRENCY_LEVEL=3
+fakeroot make-kpkg --initrd --append-to-version=-insyde kernel-image kernel-headers
+
+# install
+FN=`ls ../linux-image*.deb`
+echo "sudo dpkg -i $FN"
+
+if false; then
+	FN=`ls ../linux-headers*.deb`
+	echo "sudo dpkg -i $FN"
+fi
