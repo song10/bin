@@ -39,8 +39,10 @@ lua:~/lang/lua
 lang:~/lang
 eino:~/lang/js/einoman
 einoman:~/lang/js/einoman
-edk2:~/edk2.x64/trunk/edk2
+edk2:~/src/edk2
 c9:~/my/js/cloud9
 mymenu:~/my/js/cssmenu/mymenu2
 perl6:~/wrk/rakudo
 ovmf:~/iris/edk2/ovmf
+site:~/site
+ubs64:~/site/ubs64
