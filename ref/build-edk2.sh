@@ -1,13 +1,15 @@
-if [[ $_ = $0 ]]; then
-	echo -e "#Usage:\n\tsource $0"
+caller=$_
+RELPATH=`dirname $caller`
+RELPATH=`readlink -f $RELPATH`
+
+if [ "$caller" = "$0" ]; then
+	echo -e "#Usage:\n\t. $0 # source it"
 	exit
 else
-	#echo no
+	#echo sourcing
 	#return
 	:
 fi
-
-RELPATH=`dirname ${BASH_SOURCE[@]}`
 
 # Install required software from apt
 sudo apt-get install -y \
