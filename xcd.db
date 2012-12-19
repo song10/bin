@@ -43,6 +43,6 @@ edk2:~/src/edk2
 c9:~/my/js/cloud9
 mymenu:~/my/js/cssmenu/mymenu2
 perl6:~/wrk/rakudo
-ovmf:~/iris/edk2/ovmf
 site:~/site
 ubs64:~/site/ubs64
+ovmf:~/src.0/ovmf
