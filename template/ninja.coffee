@@ -11,8 +11,10 @@ exports.json =
 			"""
 		pull: "git pull --rebase"
 		build : """
+			rm -f *.deb *.tgz
 			./bootstrap.py
 			sudo mkdir -p /usr/local/bin
 			sudo checkinstall cp ninja /usr/local/bin/
-			cp *.deb ~/Dropbox/Public/
+			FN0=`ls *.deb`
+			cp $FN0 ~/Dropbox/Public/
 			"""

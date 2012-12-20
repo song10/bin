@@ -4,7 +4,7 @@ exports.json =
 		template: "get.dot"
 		path: "~/wrk"
 		init: """
-			sudo apt-get -y install ant ivy default-jdk
+			sudo apt-get -y install ant ivy default-jdk cdbs
 			mkdir -p ~/.ant/lib
 			cp /usr/share/java/ivy.jar ~/.ant/lib/
 			"""
@@ -15,8 +15,9 @@ exports.json =
 			"""
 		pull: "git pull --rebase"
 		build: """
-			ant update
-			ant jar
-			ant docs
-			ln -f -s ~/wrk/ringojs/bin/ringo ~/opt/bin/ringo
+			ant update jar docs
+			#ant package
+			ant dpkg
+			mv ../ringojs_*.deb ~/Dropbox/Public/
+			rm -f ../ringojs*.changes ../ringojs-*.deb
 			"""

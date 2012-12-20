@@ -11,6 +11,7 @@ exports.json =
 			"""
 		pull: "git pull --rebase"
 		build: """
+			rm -f *.deb *.tgz
 			./configure
 			make
 			sudo checkinstall make install

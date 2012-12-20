@@ -15,5 +15,6 @@ exports.json =
 			./configure --ninja
 			make
 			sudo checkinstall make install
-			cp *.deb ~/Dropbox/Public/
+			FN0=`ls *.deb`
+			cp $FN0 ~/Dropbox/Public/
 			"""
