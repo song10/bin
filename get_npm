@@ -16,6 +16,8 @@ npmmod="\
  sm\
  commander\
  nopt\
+ node-ffi\
+ execSync\
  "
 
 dummy () {
