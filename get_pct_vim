@@ -52,5 +52,6 @@ echo 'highlight LineNr ctermfg=blue' >> ~/.vimrc
 echo 'set foldmethod=expr' >> ~/.vimrc
 echo 'set foldcolumn=0' >> ~/.vimrc
 sed -i 's/"\(let g:neocomplcache_enable_auto_select.*\)/\1/' ~/.vimrc
+sed -i 's/\(shiftwidth=\)./\12/' ~/.vimrc
 
 patch -N -r - ~/wrk/pct.vim/.vim/bundle/neocomplcache/plugin/neocomplcache.vim ~/bin/patch/vim-000.patch 2>&1 > /dev/null
