@@ -1,0 +1,2 @@
+zip -P $PASSWORD -r $OUTPUT.zip $TARGET
+7z a $OUTPUT.7z -p$PASSWORD $TARGET
