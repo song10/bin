@@ -1,0 +1,14 @@
+#!/bin/sh
+if [ 0 -eq $# ]; then
+	opt='-l'
+fi
+sudo EDITOR=vi crontab -u $USER $opt $*
+
+if [ 0 -eq $# ]; then
+echo "\
+
+Sample:
+# m  h  dom mon dow command
+  0  6  *   *   *   /home/song10/bin/daily
+"
+fi
