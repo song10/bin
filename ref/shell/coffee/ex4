@@ -1,0 +1,15 @@
+#!/usr/bin/env coffee
+
+{spawn} = require 'child_process'
+tty = process.stdin
+
+shell = (cmd, opts, callback) ->
+	process.stdin.pause()
+	tty.setRawMode false
+	p = spawn cmd, opts, customFds: [0, 1, 2]
+	p.on 'exit', ->
+		tty.setRawMode true
+		process.stdin.resume()
+		callback()
+
+shell 'less', ['ex1'], -> process.exit()

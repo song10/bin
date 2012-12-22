@@ -1,0 +1,42 @@
+#!/usr/bin/env coffee
+program = require 'commander'
+`
+program
+	.version("0.0.1")
+	.option("-i, --interactive", "interact with user")
+	.option("-y, --yes", "say yes when prompt")
+	.option("-f, --force", "force")
+	;
+`
+program.parse process.argv
+
+print = console.log
+$ = require 'execSync'
+
+# user = $.stdout 'echo $USER'
+# user = user.replace /\s+$/, ''
+# print "Hello, #{user}!"
+
+$m = process.argv[0]
+$0 = process.argv[1]
+$1 = process.argv[2]
+
+options = ''
+options += '-y' if program.yes
+options += '-f' if program.force
+goal = $1
+# msg = $.stdout """
+# cd `dirname #{$0}`/../..
+# #{$m} meld.coffee template/#{goal}.coffee #{options} | sh
+# """
+# msg = msg.replace /\s+$/, ''
+# print "#{msg}"
+
+sys = require 'sys'
+exec = require('child_process').exec
+puts = (error, stdout, stderr) ->
+	sys.puts stdout
+exec """
+cd `dirname #{$0}`/../..
+#{$m} meld.coffee template/#{goal}.coffee #{options} | sh
+""", puts
