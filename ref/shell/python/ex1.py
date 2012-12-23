@@ -10,3 +10,6 @@ parser.add_argument('--sum', dest='accumulate', action='store_const',
 
 args = parser.parse_args()
 print(args.accumulate(args.integers))
+
+import subprocess
+subprocess.call("myget -y ninja", shell=True)
