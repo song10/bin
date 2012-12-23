@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /etc/xdg/autostart/
+grep -Hn *.desktop -e 'NoDisplay='
+echo "sudo sed --in-place 's/NoDisplay=true/NoDisplay=false/g' *.desktop"
