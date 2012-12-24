@@ -1,0 +1,35 @@
+#!/usr/bin/env python
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser(description='Daily Stuff.')
+parser.add_argument('-F', '--FORCE', action="store_true", default=False, help='force to do jobs')
+parser.add_argument('-f', '--force', action="store_true", default=False, help='soft force (remove NO log)')
+parser.add_argument('-a', '--all', action="store_true", default=False, help='do all jobs')
+parser.add_argument('--apt', action="store_true", default=False, help='do aptup')
+parser.add_argument('--xget', action="store_true", default=False, help='do xgetup')
+args = parser.parse_args()
+# print args
+
+args.FORCE = 'true' if args.FORCE else 'false'
+args.force = 'true' if args.force else 'false'
+args.all = 'true' if args.all else 'false'
+args.apt = 'true' if args.apt else 'false'
+args.xget = 'true' if args.xget else 'false'
+
+template = """
+%(FORCE)s && sed -i '$d' ~/.payrolltime
+payrolltime && ! %(FORCE)s && ! %(force)s && exit
+%(all)s && opt='-a -f'
+
+title
+#sudo echo -n # just to ask sudo password
+%(xget)s && echo mygetup $opt
+%(apt)s && aptup
+gitup
+"""
+
+script = template % vars(args)
+# print script
+
+subprocess.call(script, shell=True)
