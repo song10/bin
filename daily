@@ -2,6 +2,9 @@
 if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
 
 payrolltime && exit
+time=`perl -e '@_=split /:/,\`date +%H:%M\`; printf "%02d:%02d",\$_[0]+9,\$_[1]'`
+echo 'DISPLAY=:0.0 zenity --info --text "Go home!, Rex."' | at $time
+
 if [ 2 = $? ]; then opt='-a -f'; fi
 
 title
