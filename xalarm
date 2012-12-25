@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+import argparse
+import subprocess
+
+parser = argparse.ArgumentParser(description='Alarm me at a time.')
+parser.add_argument('-t', '--time', help='at time')
+parser.add_argument('-d', '--delta', help='current time + delta')
+parser.add_argument('Message', action='store', help='Message')
+args = parser.parse_args()
+# print args
+
+import datetime
+import time
+dtime = time.strftime("%H:%M", time.localtime())
+delta = '0:5'
+if args.time:
+	dtime = args.time
+	delta = '0:0'
+if args.delta:
+	delta = args.delta
+
+d1 = datetime.datetime.strptime(dtime, "%H:%M")
+d2 = datetime.datetime.strptime(delta, "%H:%M")
+dt1 = datetime.timedelta(hours=d1.hour, minutes=d1.minute)
+dt2 = datetime.timedelta(hours=d2.hour, minutes=d2.minute)
+fin = dt1 + dt2
+args.dtime = str(fin)[:-3]
+
+if -1 != args.dtime.find(','):
+	import sys
+	print "overday is not supported!"
+	sys.exit()
+
+template = """
+echo 'DISPLAY=:0.0 zenity --info --text "%(Message)s"' | at %(dtime)s 2>&1 | grep job
+"""
+
+script = template % vars(args)
+# print script
+
+subprocess.call(script, shell=True)
