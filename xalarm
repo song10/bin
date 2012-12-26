@@ -4,31 +4,47 @@ import subprocess
 
 parser = argparse.ArgumentParser(description='Alarm me at a time.')
 parser.add_argument('-t', '--time', help='at time')
-parser.add_argument('-d', '--delta', help='current time + delta')
+parser.add_argument('-a', '--add', help='time + add')
+parser.add_argument('-m', '--minus', help='time - minus')
+# parser.add_argument('Message', action='store', nargs='?', default='alarm', help='Message')
 parser.add_argument('Message', action='store', help='Message')
 args = parser.parse_args()
 # print args
 
 import datetime
 import time
-dtime = time.strftime("%H:%M", time.localtime())
-delta = '0:5'
+curtime = time.strftime("%H:%M", time.localtime())
+alatime = curtime
+addtime = '0:5'
+mintime = '0:0'
 if args.time:
-	dtime = args.time
-	delta = '0:0'
-if args.delta:
-	delta = args.delta
+	alatime = args.time
+	addtime = '0:0'
+if args.minus:
+	mintime = args.minus
+	addtime = '0:0'
+if args.add:
+	addtime = args.add
 
-d1 = datetime.datetime.strptime(dtime, "%H:%M")
-d2 = datetime.datetime.strptime(delta, "%H:%M")
+d0 = datetime.datetime.strptime(curtime, "%H:%M")
+d1 = datetime.datetime.strptime(alatime, "%H:%M")
+d2 = datetime.datetime.strptime(addtime, "%H:%M")
+d3 = datetime.datetime.strptime(mintime, "%H:%M")
+dt0 = datetime.timedelta(hours=d0.hour, minutes=d0.minute)
 dt1 = datetime.timedelta(hours=d1.hour, minutes=d1.minute)
 dt2 = datetime.timedelta(hours=d2.hour, minutes=d2.minute)
-fin = dt1 + dt2
+dt3 = datetime.timedelta(hours=d3.hour, minutes=d3.minute)
+fin = dt1 + dt2 - dt3
+# print fin
 args.dtime = str(fin)[:-3]
 
+import sys
 if -1 != args.dtime.find(','):
-	import sys
 	print "overday is not supported!"
+	sys.exit()
+
+if '-' == str(fin-dt0)[0]:
+	print "time has expired!"
 	sys.exit()
 
 template = """

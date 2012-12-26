@@ -22,6 +22,9 @@ template = """
 payrolltime && ! %(FORCE)s && ! %(force)s && exit
 %(all)s && opt='-a -f'
 
+xalarm "Ready to Home, Rex." -a "8:50"
+xalarm "Rex, Go Home Now!" -a "9:00"
+
 title
 #sudo echo -n # just to ask sudo password
 %(xget)s && echo mygetup $opt
