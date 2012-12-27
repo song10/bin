@@ -3,8 +3,8 @@ if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
 
 payrolltime && exit
 
-xalarm "Ready to Home, Rex." -a "8:50"
-xalarm "Rex, Go Home Now!" -a "9:00"
+xalarm -q "Ready to Home, Rex." -a "8:50"
+xalarm -q "Rex, Go Home Now!" -a "9:00"
 
 if [ 2 = $? ]; then opt='-a -f'; fi
 
