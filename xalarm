@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser(description='Alarm me at a time.')
 parser.add_argument('-t', '--time', help='at time')
 parser.add_argument('-a', '--add', help='time + add')
 parser.add_argument('-m', '--minus', help='time - minus')
-# parser.add_argument('Message', action='store', nargs='?', default='alarm', help='Message')
+parser.add_argument('-q', '--quiet', action='store', default=False, help='suppress output')
 parser.add_argument('Message', action='store', help='Message')
 args = parser.parse_args()
 # print args
@@ -40,15 +40,17 @@ args.dtime = str(fin)[:-3]
 
 import sys
 if -1 != args.dtime.find(','):
-	print "overday is not supported!"
+	print "another-day is not supported!"
 	sys.exit()
 
 if '-' == str(fin-dt0)[0]:
 	print "time has expired!"
 	sys.exit()
 
+args.options = "2>/dev/null" if args.quiet else '2>&1 | grep job'
+
 template = """
-echo 'DISPLAY=:0.0 zenity --info --text "%(Message)s"' | at %(dtime)s 2>&1 | grep job
+echo 'DISPLAY=:0.0 zenity --info --text "%(Message)s"' | at %(dtime)s  %(options)s
 """
 
 script = template % vars(args)
