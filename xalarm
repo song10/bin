@@ -49,10 +49,10 @@ if '-' == str(fin-dt0)[0]:
 	sys.exit()
 
 args.options = "2>/dev/null" if args.quiet else '2>&1 | grep job'
-args.stamp = args.dtime if args.stamp else ''
+args.stamp = args.dtime+"\n" if args.stamp else ''
 
 template = """
-echo 'DISPLAY=:0.0 zenity --info --text "%(stamp)s\n%(Message)s"' | at %(dtime)s  %(options)s
+echo 'DISPLAY=:0.0 zenity --info --text "%(stamp)s%(Message)s"' | at %(dtime)s  %(options)s
 """
 
 script = template % vars(args)
