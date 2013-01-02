@@ -1,4 +1,7 @@
 #!/bin/sh
+xcd.pl $* > /tmp/x && . /tmp/x
+return $?
+
 R=~/bin
 
 _lookup () {
