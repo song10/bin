@@ -12,3 +12,4 @@ sudo apt-get -y install \
  sshfs \
  dos2unix \
  geany \
+ terminator \
