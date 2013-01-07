@@ -1,5 +1,5 @@
 #!/bin/sh
-xcd.pl $* > /tmp/x && . /tmp/x
+xcd.pl $* && . /tmp/x
 return $?
 
 R=~/bin

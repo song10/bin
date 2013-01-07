@@ -46,3 +46,5 @@ perl6:~/wrk/rakudo
 site:~/site
 ubs64:~/site/ubs64
 ovmf:~/src.0/ovmf
+demo:~/src/demo
+

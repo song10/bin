@@ -1,6 +1,7 @@
 #!/usr/bin/env perl
 
 use strict;
+use warnings;
 
 my $db;
 my %hash;
@@ -11,16 +12,16 @@ my %hash;
 sub ReadDatabase {
 	delete @hash{keys %hash};
 
-	open FILE, $db or die $!;
+	open MYFILE, $db or die $!;
 	my $key;
-	while (my $line = <FILE>) {
+	while (my $line = <MYFILE>) {
 		chomp $line;
 		if ($line =~ /^([^:]+):([^:]+)$/) {
 			my ($k, $v) = ($1, $2);
 			$hash{$k} = $v;
 		}
 	}
-	close FILE;
+	close MYFILE;
 	# print map { "$_:$hash{$_}\n" } keys %hash;
 }
 
@@ -44,8 +45,9 @@ $db .= '/xcd.db';
 #
 # parse arguments
 #
+my $script = '';
 if (0 == @ARGV) {
-	print "cd -"
+	$script .= "cd -" . "\n";
 } elsif ($ARGV[0] =~ /^([^:]+):([^:]+)$/) {
 	my ($site, $path) = ($1, $2);
 	if ($path =~ m/^~/) {
@@ -53,21 +55,28 @@ if (0 == @ARGV) {
 		# $path =~ s/~/$home/;
 		$path =~ s/~//;
 	}
-
-	print "cd ~/site/$site/$site/$path"
+	$script .= "cd ~/site/$site/$site/$path" . "\n";
 } else {
 	ReadDatabase($db);
 	my $rz = LookupPath($ARGV[0]);
 	if (not $rz) {
 		print "define '$ARGV[0]' : ";
-		my $path = <>;
+		my $path = <STDIN>;
 		open (MYFILE, ">>$db");
 		print MYFILE "$ARGV[0]:$path\n";
 		close (MYFILE);
 
 		ReadDatabase($db);
-		$rz = LookupPath($ARGV[0])
+		$rz = LookupPath($ARGV[0]);
+		if (not $rz) { exit 1; }
 	}
-
-	print "cd $rz"
+	$script .= "cd $rz" . "\n";
 }
+
+#
+# generate /tmp/x
+#
+open (MYFILE, ">/tmp/x");
+print MYFILE "$script";
+close (MYFILE);
+exit 0;
