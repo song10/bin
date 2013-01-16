@@ -63,7 +63,7 @@ if (0 == @ARGV) {
 		print "define '$ARGV[0]' : ";
 		my $path = <STDIN>;
 		open (MYFILE, ">>$db");
-		print MYFILE "$ARGV[0]:$path\n";
+		print MYFILE "$ARGV[0]:$path";
 		close (MYFILE);
 
 		ReadDatabase($db);
