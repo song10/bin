@@ -1,2 +1,8 @@
 #!/bin/sh
-exec ~/android/adt-bundle-linux-x86_64/eclipse/eclipse 2>/dev/null &
+if [ -z "$1" ]; then
+	target=~/opt/eclipse/eclipse
+else
+	target=~/android/adt-bundle-linux-x86_64/eclipse/eclipse
+fi
+
+exec $target 2>/dev/null &
