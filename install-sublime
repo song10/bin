@@ -8,6 +8,8 @@ mv Sublime\ Text\ 2/ SublimeText2/
 cd ~/opt/bin
 ln -sf ../SublimeText2/sublime_text
 
+mkdir -p ~/.config/sublime-text-2/Packages/User/
+touch ~/.config/sublime-text-2/Packages/User/Preferences.sublime-settings
 sed -i '/{/ a\
 	"//color_scheme": "Packages/Color Scheme - Default/Slush \& Poppies.tmTheme",\
 	"font_size": 12,\
