@@ -48,3 +48,4 @@ ubs64:~/site/ubs64
 ovmf:~/src.0/ovmf
 demo:~/src/demo
 mongoose:~/workspace/mongoose/bindings/python
+cs:~/nodejs/cs
