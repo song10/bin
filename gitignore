@@ -1,12 +1,24 @@
 #!/bin/sh
+
+# $0 [-n] [files]
+
+args="--assume-unchanged"
+
 if test 0 -lt $#; then
-  if test "-n" = "$1"; then
-    arg=--no-assume-unchanged
-    shift
-  else
-    arg=--assume-unchanged
-  fi
-  git update-index $arg $*
+	opt=$1
+	shift
+	case $opt in
+		-n) args="$args --no-assume-unchanged";;
+		-a) args2=" | tee -a .gitignore";;
+	esac
+fi
+
+if test 0 -lt $#; then
+	git update-index $args $*
 else
-  git st | grep -P '^#\t'|sed 's/#\t//'|grep -v -P '^\.\.'
+	if [ -z "$args2" ]; then
+		git st | grep -P '^#\t' | sed 's/#\t//' | grep -v -P '^\.\.'
+	else
+		git st | grep -P '^#\t' | sed 's/#\t//' | grep -v -P '^\.\.' | tee -a .gitignore
+	fi
 fi
