@@ -1,0 +1,2 @@
+#!/bin/sh
+while true; do dropbox status|tr '\n' ' '; sleep 3; echo -ne "\033[1A"; done
