@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# Make sure only root can run our script
+if [[ $EUID -ne 0 ]]; then
+  echo "This script must be run as root" 1>&2
+	echo "sudo $0"
+  exit 1
+fi
+
+for i in `seq 1 254`; do echo -n "$i: "; dhcping -s 172.18.4.$i 2>&1 | grep -i got; done
