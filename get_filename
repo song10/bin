@@ -1,0 +1,6 @@
+#!/bin/sh
+fullpath="$1"
+filename=$(basename "$fullpath")
+extension="${filename##*.}"
+filename="${filename%.*}"
+echo $filename
