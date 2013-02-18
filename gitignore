@@ -3,6 +3,8 @@
 # $0 [-n] [files]
 
 args="--assume-unchanged"
+grepopt="-P"
+uname -a | grep -i darwin 2>&1 >/dev/null && grepopt="-G"
 
 if test 0 -lt $#; then
 	opt=$1
@@ -17,8 +19,8 @@ if test 0 -lt $#; then
 	git update-index $args $*
 else
 	if [ -z "$args2" ]; then
-		git st | grep -G '^#\t' | sed 's/#	//' | grep -v -G '^\.\.'
+		git st | grep $grepopt '^#\t' | sed 's/#	//' | grep -v $grepopt '^\.\.'
 	else
-		git st | grep -G '^#\t' | sed 's/#	//' | grep -v -G '^\.\.' | tee -a .gitignore
+		git st | grep $grepopt '^#\t' | sed 's/#	//' | grep -v $grepopt '^\.\.' | tee -a .gitignore
 	fi
 fi
