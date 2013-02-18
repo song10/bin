@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+import argparse
+import subprocess
+import sys
+
+parser = argparse.ArgumentParser(description='Vim Agent')
+parser.add_argument('File', nargs='*', action='store', help='Files to edit')
+parser.add_argument('-s', '--smart', help='edit file smart')
+args = parser.parse_args()
+# print args
+
+if args.smart:
+	# parse file name within
+	pass
+
+template = """
+vim %(file)s %(line)s
+"""
+
+script = template % vars(args)
+print script
+
+# subprocess.call(script, shell=True)
