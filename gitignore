@@ -17,8 +17,8 @@ if test 0 -lt $#; then
 	git update-index $args $*
 else
 	if [ -z "$args2" ]; then
-		git st | grep -P '^#\t' | sed 's/#\t//' | grep -v -P '^\.\.'
+		git st | grep -G '^#\t' | sed 's/#	//' | grep -v -G '^\.\.'
 	else
-		git st | grep -P '^#\t' | sed 's/#\t//' | grep -v -P '^\.\.' | tee -a .gitignore
+		git st | grep -G '^#\t' | sed 's/#	//' | grep -v -G '^\.\.' | tee -a .gitignore
 	fi
 fi

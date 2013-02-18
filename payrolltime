@@ -21,7 +21,7 @@ my ($ndate, $ntime) = ($1, $2);
 #
 #print "now: $ndate, last: $ldate\n";
 if ($ndate ne $ldate) {
-  `echo -n '$now' >> ~/.payrolltime`;
+  `bash -c "echo -n '$now' >> ~/.payrolltime"`;
   $exit = 1; # the first time per day
   if ((substr $ndate, 0, 7) ne (substr $ldate, 0, 7)) {
     $exit = 2; # the first time per month

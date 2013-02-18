@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ '-r' = "$1" ]; then sed -i '$d' ~/.payrolltime; fi
+if [ '-r' = "$1" ]; then sed -i '' '$d' ~/.payrolltime; fi
 
 payrolltime && exit
 
@@ -10,6 +10,6 @@ if [ 2 = $? ]; then opt='-a -f'; fi
 
 title
 sudo echo -n # just to ask sudo password
-aptup
+uname -a | grep -i darwin 2>&1 >/dev/null && aptup
 #mygetup $opt
 gitup
