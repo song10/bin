@@ -1,1 +1,4 @@
+.gitignore
 *.log
+.c9revisions/
+.settings
