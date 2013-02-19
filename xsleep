@@ -1,4 +1,7 @@
 #!/bin/sh
+depth='sleep'
+if [ 'lock' = "$1" ]; then shift; depth='lock'; fi
+
 uname -a | grep -i darwin 2>&1 >/dev/null
 if [ 0 -eq $? ]; then
 	# echo OSX
@@ -6,10 +9,14 @@ if [ 0 -eq $? ]; then
 	pmset sleepnow
 else
 	# echo UNIX
-	gnome-screensaver-command --lock # to lock the Gnome session
-	pmi action suspend   # To suspend-to-RAM (aka sleep)
-	pmi action hibernate # To suspend-to-disk (aka hibernate)
-	sudo /etc/acpi/sleep.sh
-	echo 'pmi action suspend' | at now + 40 minutes
-	/usr/lib/hal/scripts/linux/hal-system-power-hibernate-linux
+	if [ 'lock' = "$depth" ]; then
+		gnome-screensaver-command --lock # to lock the Gnome session
+	fi
+	# pmi action suspend   # To suspend-to-RAM (aka sleep)
+	# pmi action hibernate # To suspend-to-disk (aka hibernate)
+	if [ 'sleep' = "$depth" ]; then
+		sudo /etc/acpi/sleep.sh
+	fi
+	# echo 'pmi action suspend' | at now + 40 minutes
+	# /usr/lib/hal/scripts/linux/hal-system-power-hibernate-linux
 fi
