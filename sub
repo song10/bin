@@ -1,2 +1,6 @@
 #!/bin/sh
-sublime_text $* 2>/dev/null &
+
+cmd='sublime_text'
+uname -a | grep -i darwin 2>&1 >/dev/null && cmd='/Applications/Sublime Text 2.app/Contents/MacOS/Sublime Text 2'
+#echo "$cmd $* 2>/dev/null &"
+"$cmd" $* 2>/dev/null &
