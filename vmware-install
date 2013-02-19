@@ -1,0 +1,11 @@
+#!/bin/sh
+## To uninstall VMWare Workstation, you will need to run
+# vmware-installer --uninstall-product vmware-workstation
+
+## If you just run
+# vmware-installer
+## by itself, it will print all the options you have available.
+
+## If you run
+vmware-installer -l
+# It will print a list of all VMWare products you have installed.
