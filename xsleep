@@ -1,0 +1,15 @@
+#!/bin/sh
+uname -a | grep -i darwin 2>&1 >/dev/null
+if [ 0 -eq $? ]; then
+	# echo OSX
+	# osascript -e 'tell application "System Events" to sleep'
+	pmset sleepnow
+else
+	# echo UNIX
+	gnome-screensaver-command --lock # to lock the Gnome session
+	pmi action suspend   # To suspend-to-RAM (aka sleep)
+	pmi action hibernate # To suspend-to-disk (aka hibernate)
+	sudo /etc/acpi/sleep.sh
+	echo 'pmi action suspend' | at now + 40 minutes
+	/usr/lib/hal/scripts/linux/hal-system-power-hibernate-linux
+fi
