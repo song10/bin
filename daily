@@ -2,18 +2,21 @@
 
 sedopt="-i"
 uname -a | grep -i darwin 2>&1 >/dev/null && sedopt="-i ''"
-
-if [ '-r' = "$1" ]; then sed $sedopt '$d' ~/.payrolltime; fi
-
-payrolltime && exit
+# if [ '-r' = "$1" ]; then shift; sed $sedopt '$d' ~/.payrolltime; fi
+if [ '-f' = "$1" ]; then
+	shift;
+	postcmd=':'
+else
+	postcmd='exit'
+fi
+payrolltime && $postcmd
+if [ 2 = $? ]; then opt='-a -f'; fi
 
 xalarm -q -s -a "8:50" "Ready to Home, Rex."
 xalarm -q -s -a "9:00" "Rex, Go Home Now!"
 
-if [ 2 = $? ]; then opt='-a -f'; fi
-
 title
 sudo echo -n # just to ask sudo password
-uname -a | grep -i darwin 2>&1 >/dev/null || aptup
+if [ 'up' = "$1" ]; then shift; uname -a | grep -i darwin 2>&1 >/dev/null || aptup; fi
 #mygetup $opt
 gitup
