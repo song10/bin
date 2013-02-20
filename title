@@ -37,7 +37,7 @@ case $TITLE in
 	;;
 esac
 
-echo "set '$TYPE' title: '$TITLE'"
+# echo "set '$TYPE' title: '$TITLE'"
 
 for x in $TYPE; do
 	case $x in
