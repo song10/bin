@@ -12,11 +12,18 @@ fi
 payrolltime && $postcmd
 if [ 2 = $? ]; then opt='-a -f'; fi
 
+title
+
 xalarm -q -s -a "8:50" "Ready to Home, Rex."
 xalarm -q -s -a "9:00" "Rex, Go Home Now!"
 
-title
-sudo echo -n # just to ask sudo password
-if [ 'up' = "$1" ]; then shift; uname -a | grep -i darwin 2>&1 >/dev/null || aptup; fi
+while [ 'up' = "$1" ]; do
+	shift
+	uname -a | grep -i darwin 2>&1 >/dev/null && break
+	sudo echo -n # just to ask sudo password
+	aptup
+	break
+done
+
 #mygetup $opt
 gitup
