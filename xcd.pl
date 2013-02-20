@@ -55,7 +55,7 @@ if (0 == @ARGV) {
 		# $path =~ s/~/$home/;
 		$path =~ s/~//;
 	}
-	$script .= "cd ~/site/$site/$site/$path" . "\n";
+	$script .= "cd ~/site/$site/$path" . "\n";
 } else {
 	ReadDatabase($db);
 	my $rz = LookupPath($ARGV[0]);

@@ -1,0 +1,61 @@
+#!/bin/sh
+
+function usage_func(){
+	cat <<END
+Usage:
+	$0 target [options]
+
+	Options:
+		m mount
+		r re-mount
+		u un-mount
+END
+
+	echo
+	mount | grep 'fuse.sshfs'
+	exit
+}
+
+[ 0 -eq $# ] && usage_func
+
+# target=$(basename $(pwd))
+target=$1
+shift
+
+# is target available?
+TARGET_HOME=$(ssh $target 'echo $HOME')
+[ 0 -eq $? ] || exit
+
+mkdir -p $target
+
+function mount_func(){
+	echo "sshfs $target:$TARGET_HOME `pwd`/$target"
+	sshfs $target:$TARGET_HOME $target
+}
+
+function umount_func(){
+	fusermount -u $target
+}
+
+if [ 0 -eq $# ]; then
+	mount_func
+else
+	while [ 0 -lt $# ]; do
+		case $1 in
+			"m")
+				mount_func
+				;;
+			"r")
+				umount_func
+				mount_func
+				;;
+			"u")
+				umount_func
+				;;
+			*)
+				:
+			;;
+		esac
+		shift
+	done
+fi
