@@ -1,8 +1,17 @@
 #!/bin/sh
-if [ -z "$1" ]; then
-	target=~/opt/eclipse/eclipse
-else
-	target=~/android/adt-bundle-linux-x86_64/eclipse/eclipse
-fi
 
-exec $target 2>/dev/null &
+[ -z "$1" ] && the1='origin' || the1=$1;shift
+
+case $the1 in
+	'titanium'|'t')
+		target=~/android/Titanium_Studio/TitaniumStudio
+		;;
+	'android'|'a')
+		target=~/android/adt-bundle-linux-x86_64/eclipse/eclipse
+		;;
+	*|'origin'|'o')
+		target=~/opt/eclipse/eclipse
+		;;
+esac
+
+exec $target $* 2>/dev/null &
