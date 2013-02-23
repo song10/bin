@@ -1,0 +1,77 @@
+#!/bin/sh
+
+usage_func(){
+	cat <<END
+Usage:
+	`basename $0` [options] file [prefix]
+
+	Options:
+		merge merge split files
+		split split into files
+END
+	exit
+}
+
+[ 0 -eq $# ] && usage_func
+
+prefix_func(){
+	if [ 'split' = "$action" ]; then
+		echo "$1_"
+	else
+		fullpath="$1"
+		filename=$(basename "$fullpath")
+		extension="${filename##*_}"
+		filename="${filename%_*}"
+		# echo "filename:'$filename', extension:'$extension'"
+		echo $filename
+	fi
+}
+
+split_func(){
+	# echo "split_func: source='$srcname', prefix='$prefix'"
+	# split --bytes=1024m bigfile.iso small_file_
+	# split -b 100K "$srcname" "$prefix"
+	split -b 1G "$srcname" "$prefix"
+}
+
+merge_func(){
+	# echo "merge_func: source='$srcname', prefix='$prefix'"
+	# cat small_file_* > joined_file.iso
+	filename="${srcname%_*}"
+	cat "$filename"_* > "$prefix"
+}
+
+action='split'
+while [ 0 -lt $# ]; do
+	case $1 in
+		"merge"|"m")
+			action='merge'
+			shift
+			break
+			;;
+		"split"|"s")
+			action='split'
+			shift
+			break
+			;;
+		*)
+			break
+			;;
+		esac
+done
+
+srcname=$1
+shift
+
+if [ 0 -eq $# ]; then
+	prefix=$(prefix_func "$srcname")
+else
+	prefix=$1
+	shift
+fi
+
+if [ 'split' = "$action" ]; then
+	split_func
+else
+	merge_func
+fi

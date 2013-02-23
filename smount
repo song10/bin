@@ -3,7 +3,7 @@
 usage_func(){
 	cat <<END
 Usage:
-	$0 target [options]
+	`basename $0` target [options]
 
 	Options:
 		m mount
