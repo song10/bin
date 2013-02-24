@@ -24,9 +24,12 @@ case $1 in
 	;;
 esac
 
-TITLE="$1"
-shift
-if [ -z "$TITLE" ]; then TITLE=`hostname`; fi
+if [ 0 -lt $# ];then
+	TITLE="$1"
+	shift
+else
+	TITLE=`hostname`
+fi
 
 case $TITLE in
 	".")
