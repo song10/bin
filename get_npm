@@ -7,21 +7,21 @@ if [ -n "$1" ]; then npmcmd=$1; fi
 npmmod="\
  coffee-script\
  dot\
- express\
  jade\
  blade\
  stylus\
  html2jade\
  js2coffee\
- sm\
- commander\
- nopt\
- ffi\
- execSync\
  "
 
 dummy () {
 npmmod="\
+ execSync\
+ ffi\
+ nopt\
+ commander\
+ sm\
+ express\
  everyauth\
  cradle\
  node-inspector\
