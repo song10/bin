@@ -12,7 +12,7 @@ Usage:
 END
 
 	echo
-	mount | grep 'fuse.sshfs'
+	mount | grep 'fuse.sshfs\|fuse4x'
 	exit
 }
 
