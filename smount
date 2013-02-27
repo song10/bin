@@ -22,6 +22,9 @@ END
 target=$1
 shift
 
+# smart: remove tail '/'
+target=$(echo $target|sed 's|/*$||')
+
 # is target available?
 TARGET_HOME=$(ssh $target 'echo $HOME')
 [ 0 -eq $? ] || exit
@@ -34,7 +37,12 @@ mount_func(){
 }
 
 umount_func(){
-	fusermount -u $target
+	x=$(uname | grep Darwin)
+	if [ 0 -eq $? ]; then
+		umount $target
+	else
+		fusermount -u $target
+	fi
 }
 
 if [ 0 -eq $# ]; then
