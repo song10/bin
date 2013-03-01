@@ -1,17 +1,58 @@
 #!/bin/sh
+usage(){
+	cat <<EOF
+Usage:
+	`basename $0` [options]
+EOF
+	exit
+}
 
-[ -z "$1" ] && the1='origin' || the1=$1;shift
-
-case $the1 in
-	'titanium'|'t')
-		target=~/android/Titanium_Studio/TitaniumStudio
+OS=$(uname)
+case $OS in
+	'Darwin')
+		OS='osx'
 		;;
-	'android'|'a')
-		target=~/android/adt-bundle-linux-x86_64/eclipse/eclipse
+	'Ubuntu')
+		OS='linux'
 		;;
-	*|'origin'|'o')
-		target=~/opt/eclipse/eclipse
-		;;
+	*)
+		echo "Unknown OS!"
+		usage
 esac
 
-exec $target $* 2>/dev/null &
+
+do_osx(){
+	# echo "do_osx"
+	case $THEONE in
+		'titanium'|'t')
+			target=~/android/titanium
+			;;
+		'android'|'a')
+			target=~/android/adt-bundle-mac-x86_64/eclipse/Eclipse.app/Contents/MacOS/eclipse
+			;;
+		*|'origin'|'o')
+			target=~/opt/eclipse/eclipse
+			;;
+	esac
+	exec $target $* 2>/dev/null &
+}
+
+do_linux(){
+	# echo "do_linux"
+	case $THEONE in
+		'titanium'|'t')
+			target=~/android/Titanium_Studio/TitaniumStudio
+			;;
+		'android'|'a')
+			target=~/android/adt-bundle-linux-x86_64/eclipse/eclipse
+			;;
+		*|'origin'|'o')
+			target=~/opt/eclipse/eclipse
+			;;
+	esac
+	exec $target $* 2>/dev/null &
+}
+
+# common of OSs
+[ -z "$1" ] && THEONE='origin' || THEONE=$1;shift
+do_$OS
