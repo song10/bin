@@ -1,27 +1,62 @@
 #!/bin/sh
-while :; do
-  dmesg | head -9 | grep -i ubuntu > /dev/null
-  if [ 0 -eq $? ]; then
-    sudo apt-get update
-    sudo apt-get -y dist-upgrade
-    break
-  fi
+usage(){
+	cat <<EOF
+Usage:
+	`basename $0` [options]
+EOF
+	exit
+}
 
-  dmesg | head -9 | grep -i 'red hat' > /dev/null
-  if [ 0 -eq $? ]; then
-    sudo yum -y update
-    break
-  fi
+OS=$(uname)
+case $OS in
+	'Darwin')
+		OS='osx'
+		;;
+	'Linux')
+		OS='linux'
+		;;
+	*)
+		echo "Unknown OS!"
+		usage
+esac
 
-  # be smart
-  _=$(which apt-get)
-  if [ 0 -eq $? ]; then
-    sudo apt-get update
-    sudo apt-get -y dist-upgrade
-    break
-  fi
 
-  # quit
-  echo "unknow distro! abort."
-  break
-done
+do_osx(){
+	while :; do
+		brew update && brew upgrade
+		break
+	done
+}
+
+do_linux(){
+	while :; do
+		dmesg | head -9 | grep -i ubuntu > /dev/null
+		if [ 0 -eq $? ]; then
+			sudo apt-get update
+			sudo apt-get -y dist-upgrade
+			break
+		fi
+
+		dmesg | head -9 | grep -i 'red hat' > /dev/null
+		if [ 0 -eq $? ]; then
+			sudo yum -y update
+			break
+		fi
+
+		# be smart
+		_=$(which apt-get)
+		if [ 0 -eq $? ]; then
+			sudo apt-get update
+			sudo apt-get -y dist-upgrade
+			break
+		fi
+
+		# quit
+		echo "unknow distro! abort."
+		break
+	done
+}
+
+# common of OSs
+[ -z "$1" ] && THEONE='origin' || THEONE=$1;shift
+do_$OS
