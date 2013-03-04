@@ -12,7 +12,7 @@ case $OS in
 	'Darwin')
 		OS='osx'
 		;;
-	'Ubuntu')
+	'Linux')
 		OS='linux'
 		;;
 	*)
