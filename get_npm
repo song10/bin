@@ -12,6 +12,9 @@ npmmod="\
  stylus\
  html2jade\
  js2coffee\
+ alloy\
+ jake\
+ titanium\
  "
 
 dummy () {

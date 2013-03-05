@@ -51,3 +51,4 @@ mongoose:~/workspace/mongoose/bindings/python
 cs:~/nodejs/cs
 tools:~/workspace/iristools
 vm:~/xso/vm
+tmp:~/tmp
