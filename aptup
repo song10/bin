@@ -58,10 +58,4 @@ do_linux(){
 }
 
 # common of OSs
-if [ -z "$1" ]; then
-	THEONE='origin'
-else
-	THEONE=$1
-	shift
-fi
 do_$OS
