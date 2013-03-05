@@ -14,6 +14,7 @@ npmmod="\
  js2coffee\
  alloy\
  jake\
+ jsonlint\
  titanium\
  "
 
