@@ -47,7 +47,7 @@ $db .= '/xcd.db';
 #
 my $script = '';
 if (0 == @ARGV) {
-	$script .= "cd -" . "\n";
+	$script .= "cd -";
 } elsif ($ARGV[0] =~ /^([^:]+):([^:]+)$/) {
 	my ($site, $path) = ($1, $2);
 	if ($path =~ m/^~/) {
@@ -70,7 +70,7 @@ if (0 == @ARGV) {
 		$rz = LookupPath($ARGV[0]);
 		if (not $rz) { exit 1; }
 	}
-	$script .= "cd $rz" . "\n";
+	$script .= "mkdir -p $rz;cd $rz";
 }
 
 #

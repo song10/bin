@@ -10,6 +10,7 @@ _lookup () {
 		if test "$key" = "$1"; then
 			val=$(echo $x | cut -d':' -f2)
 			val=$(eval "echo $val")
+			mkdir -p $val
 			cd $val
 			return 0
 		fi
