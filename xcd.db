@@ -53,3 +53,4 @@ tools:~/workspace/iristools
 vm:~/xso/vm
 tmp:~/tmp
 ti:~/my/titanium
+alloy:~/my/git/alloy
