@@ -12,14 +12,16 @@ npmmod="\
  stylus\
  html2jade\
  js2coffee\
- alloy\
- jake\
- jsonlint\
- titanium\
+ cordova\
+ plugman\
  "
 
 dummy () {
 npmmod="\
+ alloy\
+ jake\
+ jsonlint\
+ titanium\
  execSync\
  ffi\
  nopt\
