@@ -23,10 +23,25 @@ esac
 
 do_osx(){
 	:
+	gitup
+	if [ 'up' = "$1" ]; then
+		shift
+		gitup
+		aptup
+		xup
+	fi
 }
 
 do_linux(){
 	:
+	if [ 'up' = "$1" ]; then
+		shift
+		sudo echo -n # to ask sudo password first
+		gitup
+		aptup
+	else
+		gitup
+	fi
 }
 
 # common of OSs
@@ -46,45 +61,5 @@ if [ 'is1171' = `hostname` ]; then
 	xalarm -q -s -a "9:00" "Rex, Go Home Now!"
 fi
 
-
-if [ 'up' = "$1" ]; then
-	shift
-	sudo echo -n # to ask sudo password first
-	gitup
-	aptup
-	#mygetup $opt
-else
-	gitup
-fi
-
 do_$OS $*
 exit $?
-
-
-
-
-sedopt="-i"
-uname -a | grep -i darwin 2>&1 >/dev/null && sedopt="-i ''"
-# if [ '-r' = "$1" ]; then shift; sed $sedopt '$d' ~/.payrolltime; fi
-if [ '-f' = "$1" ]; then
-	shift;
-	postcmd=':'
-else
-	postcmd='exit'
-fi
-payrolltime && $postcmd
-if [ 2 = $? ]; then opt='-a -f'; fi
-
-xalarm -q -s -a "8:50" "Ready to Home, Rex."
-xalarm -q -s -a "9:00" "Rex, Go Home Now!"
-
-while [ 'up' = "$1" ]; do
-	shift
-	uname -a | grep -i darwin 2>&1 >/dev/null && break
-	sudo echo -n # just to ask sudo password
-	aptup
-	break
-done
-
-#mygetup $opt
-gitup
