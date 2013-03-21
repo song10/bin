@@ -22,18 +22,18 @@ esac
 
 
 do_osx(){
-	:
-	gitup
 	if [ 'up' = "$1" ]; then
 		shift
+		sudo echo -n # to ask sudo password first
 		gitup
 		aptup
-		xup
+		sudo softwareupdate -i -a
+	else
+		gitup
 	fi
 }
 
 do_linux(){
-	:
 	if [ 'up' = "$1" ]; then
 		shift
 		sudo echo -n # to ask sudo password first
