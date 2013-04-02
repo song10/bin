@@ -62,3 +62,4 @@ cordova:~/my/cordova
 cor:~/my/cordova
 app:~/my/app
 todo:~/my/app/prj/todo
+www:~/my/app/prj/todo/assets/www
