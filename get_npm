@@ -13,11 +13,11 @@ npmmod="\
  html2jade\
  js2coffee\
  cordova\
- plugman\
  "
 
 dummy () {
 npmmod="\
+ plugman\
  alloy\
  jake\
  jsonlint\
