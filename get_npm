@@ -17,6 +17,7 @@ npmmod="\
 
 dummy () {
 npmmod="\
+ xmlhttprequest\
  plugman\
  alloy\
  jake\
