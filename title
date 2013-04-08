@@ -1,10 +1,11 @@
 #!/bin/sh
 
-if [ -z "$STY" ]; then
+if { [ ! 'screen' = "$TERM" ] && [ -z "$STY" ]; } then
 	TYPE='tab'
 else
 	TYPE='scr'
 fi
+#echo "TYPE=$TYPE"
 
 case $1 in
 	"tab")
