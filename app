@@ -35,8 +35,9 @@ case $cmd in
 		title .
 		stylus -w *.styl
 		;;
-	'5'|'www')
+	'5'|'prj')
 		xcd eino
+		cd2
 		title .
 		;;
 	'6'|'eclipse')
