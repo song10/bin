@@ -37,7 +37,7 @@ irissrvr:~/insyde/project/iris/irissrvr
 ringo:~/wrk/js/ringojs
 lua:~/lang/lua
 lang:~/lang
-eino:~/lang/js/einoman
+eino:~/my/app/prj/einoman/assets/www
 einoman:~/lang/js/einoman
 edk2:~/src/edk2
 c9:~/my/js/cloud9

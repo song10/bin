@@ -1,2 +1,2 @@
 #!/bin/sh
-exec ~/my/app/git/mongoose/mongoose
+exec ~/my/app/git/mongoose/mongoose $*
