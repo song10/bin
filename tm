@@ -13,9 +13,9 @@ fi
 
 # create a new session, named $SESSION, and detach from it
 $tmux new-session -d -s $SESSION
-$tmux new-window    -t $SESSION:0 'scr'
-$tmux new-window    -t $SESSION:1 -n ubs64 "xssh ubs64"
-$tmux new-window    -t $SESSION:2 -n util  "xssh util"
-$tmux new-window    -t $SESSION:3
-$tmux select-window -t $SESSION:0
+$tmux new-window    -t $SESSION:0 -n ')'
+$tmux new-window    -t $SESSION:1 'title;screen -D -R'
+$tmux new-window    -t $SESSION:2 -n ubs64 "xssh ubs64"
+$tmux new-window    -t $SESSION:3 -n util  "xssh util"
+$tmux select-window -t $SESSION:1
 $tmux attach -t $SESSION
