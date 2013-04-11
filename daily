@@ -57,8 +57,8 @@ payrolltime && $postcmd
 if [ 2 = $? ]; then opt='-a -f'; fi
 
 if [ 'is1171' = `hostname` ]; then
-	xalarm -q -s -a "8:50" "Ready to Home, Rex."
-	xalarm -q -s -a "9:00" "Rex, Go Home Now!"
+	xalarm -q -s -a "8:50" "$HOSTNAME: Ready to Home, Rex."
+	xalarm -q -s -a "9:00" "$HOSTNAME: Rex, Go Home Now!"
 fi
 
 do_$OS $*
