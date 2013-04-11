@@ -28,7 +28,7 @@ sub ReadDatabase {
 #
 # lookup table
 #
-sub LookupPath 	{
+sub LookupPath {
 	my $key = shift;
 	return $hash{$key} if exists $hash{$key};
 	return '';
@@ -48,6 +48,13 @@ $db .= '/xcd.db';
 my $script = '';
 if (0 == @ARGV) {
 	$script .= "cd -";
+# } elsif (1 == @ARGV) {
+} elsif (2 == @ARGV) {
+	my $prj = $ARGV[1];
+	my $pre = "~/my/app/$ARGV[0]";
+	my $pos = "$prj/assets/www";
+	my $rz = "$pre/$pos";
+	$script .= "cd $rz;title $prj\n";
 } elsif ($ARGV[0] =~ /^([^:]+):([^:]+)$/) {
 	my ($site, $path) = ($1, $2);
 	if ($path =~ m/^~/) {
