@@ -1,0 +1,3 @@
+#!/bin/sh
+gnome-session-save --force-logout
+#gnome-session-quit
