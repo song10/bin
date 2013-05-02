@@ -13,6 +13,7 @@ case $cmd in
 		xcd site
 		title .
 		smount ubs64
+		smount util
 		;;
 	'1'|'app')
 		xcd app
