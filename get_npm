@@ -13,6 +13,7 @@ npmmod="\
  html2jade\
  js2coffee\
  cordova\
+ corsproxy\
  "
 
 dummy () {
