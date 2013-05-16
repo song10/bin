@@ -3,12 +3,13 @@ vbnics="virbr0"
 vmnics="vmnet1 vmnet8"
 vxnics="$vbnics $vmnics"
 updown="down"
+startstop='stop'
 vb=false
 vm=false
 
 for x in $@; do
-  if [ 'up' = "$x" ];then updown="up";continue;fi
-  if [ 'down' = "$x" ];then updown="down";continue;fi
+  if [ 'up' = "$x" ];then updown="up";startstop='start';continue;fi
+  if [ 'down' = "$x" ];then updown="down";startstop='down';continue;fi
   if [ 'vb' = "$x" ];then vb=true;continue;fi
   if [ 'vm' = "$x" ];then vm=true;continue;fi
 done
@@ -22,3 +23,6 @@ fi
 for x in $vxnics; do
   sudo ifconfig $x $updown
 done
+
+sudo service vboxdrv $startstop
+
