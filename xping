@@ -1,0 +1,10 @@
+#!/bin/sh
+while :; do
+  ping -c1 8.8.4.4 &> /dev/null && sleep 2 && continue
+  ifconfig eth0 down
+  sleep 1
+  ifconfig eth0 up
+  #sleep 1
+  dhclient eth0 &> /dev/null
+  #sleep 1
+done
