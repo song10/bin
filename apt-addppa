@@ -1,0 +1,5 @@
+#!/bin/sh
+user=$1
+ppaname=$2
+sudo add-apt-repository ppa:$user/$ppaname
+
