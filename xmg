@@ -1,0 +1,4 @@
+#!/bin/sh
+port=8080
+if [ ! -z "$1" ]; then port="$1"; fi
+mongoose -listening_ports $port
