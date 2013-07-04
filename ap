@@ -1,0 +1,56 @@
+#!/bin/bash
+usage(){
+	cat <<EOF
+Usage:
+	`basename $0` [options]
+EOF
+	exit
+}
+
+cmd=$1
+case $cmd in
+	'xping')
+		title xping
+		sudo ~/bin/xping
+		;;
+	'0'|'app')
+		xcd app
+		title .
+		bin/update
+		;;
+	'1'|'pad')
+		xcd app
+		cd prj/einopad
+		title pad
+		;;
+	'2'|'mongoose')
+		xcd app
+		cd prj/einopad/assets/www
+		title mongoose
+		mongoose
+		;;
+	'3'|'make')
+		xcd app
+		cd prj/einopad/assets/www
+		title make
+		watch make
+		;;
+	'4'|'wrk1')
+		xcd app
+		cd prj/einopad/assets/www
+		title wrk1
+		;;
+	'5'|'wrk2')
+		xcd app
+		cd prj/einopad/assets/www
+		title wrk2
+		;;
+	'6'|'wrk3')
+		xcd app
+		cd prj/einopad/assets/www
+		title wrk3
+		;;
+	*)
+		echo "Unknown option '$cmd'!"
+		usage
+esac
