@@ -24,5 +24,4 @@ for x in $vxnics; do
   sudo ifconfig $x $updown
 done
 
-sudo service vboxdrv $startstop
-
+#sudo service vboxdrv $startstop
