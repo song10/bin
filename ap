@@ -10,30 +10,29 @@ EOF
 cmd=$1
 case $cmd in
 	'xping')
+		cd
 		title xping
 		sudo ~/bin/xping
 		;;
-	'0'|'app')
-		xcd app
-		title .
-		bin/update
+	'eclipse')
+		cd
+		title eclipse
+		eclipse
 		;;
-	'1'|'pad')
-		xcd app
-		cd prj/einopad
-		title pad
+	'yping')
+		cd
+		title yping
+		for x in `ps aux | grep eth0 | sed 's/\s\s*/ /g' | cut -d ' ' -f 2`; do sudo kill -9 $x; done
 		;;
-	'2'|'mongoose')
-		xcd app
-		cd prj/einopad/assets/www
+	'zping')
+		cd
+		title zping
+		ping -i5 tw.yahoo.com
+		;;
+	'mongoose')
+		#cd
 		title mongoose
 		mongoose
-		;;
-	'3'|'make')
-		xcd app
-		cd prj/einopad/assets/www
-		title make
-		watch make
 		;;
 	'4'|'wrk1')
 		xcd app
