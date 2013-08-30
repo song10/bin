@@ -1,0 +1,47 @@
+#!/bin/bash
+usage(){
+	cat <<EOF
+Usage:
+	`basename $0` [options]
+EOF
+	exit
+}
+
+cmd=$1
+case $cmd in
+	'0')
+		cd
+		title .
+		;;
+	'1')
+		xcd tui
+		title .
+		;;
+	'2')
+		xcd iru
+		title .
+		;;
+	'3')
+		xcd iru
+		cd test
+		title .
+		;;
+	'4')
+		xcd train
+		cd acpiutil
+		title .
+		;;
+	'5'|'wrk2')
+		xcd app
+		cd prj/einopad/assets/www
+		title wrk2
+		;;
+	'6'|'wrk3')
+		xcd app
+		cd prj/einopad/assets/www
+		title wrk3
+		;;
+	*)
+		echo "Unknown option '$cmd'!"
+		usage
+esac

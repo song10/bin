@@ -1,0 +1,9 @@
+#!/bin/sh
+screen -dmS "$USER"
+screen -S "$USER" -p 0 -X stuff $'. wrk 0\n'
+screen -S "$USER" -p 1 -X stuff $'. wrk 1\n'
+screen -S "$USER" -p 2 -X stuff $'. wrk 2\n'
+screen -S "$USER" -p 3 -X stuff $'. wrk 3\n'
+screen -S "$USER" -p 4 -X stuff $'. wrk 4\n'
+screen -S "$USER" -p 5 -X stuff $'. wrk 5\n'
+screen -D -R
