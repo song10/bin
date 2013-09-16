@@ -22,11 +22,15 @@ if test 0 -eq $#; then
 	cd -
 else
 	_lookup $1
-	if test 0 -ne $? ; then
+	if test 0 -ne $?; then
 		echo -n "define '$1' : "
 		read def
 		echo "$1:$def" >> $R/xcd.db
 
 		_lookup $1
+	fi
+
+	if test -n "$2"; then
+		cd "$2"
 	fi
 fi
