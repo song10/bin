@@ -50,9 +50,9 @@ do_linux(){
 			target=~/opt/eclipse/eclipse
 			;;
 	esac
-	exec $target $* 2>/dev/null &
+	UBUNTU_MENUPROXY=0 exec $target $* 2>/dev/null &
 }
 
 # common of OSs
-[ -z "$1" ] && THEONE='origin' || THEONE=$1;shift
+[ -z "$1" ] && THEONE='origin' || THEONE=$1; #shift
 do_$OS
