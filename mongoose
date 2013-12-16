@@ -1,2 +1,1 @@
-#!/bin/sh
-exec ~/my/app/git/mongoose/mongoose $*
+/home/song10/my/src/mongoose/build/mongoose
