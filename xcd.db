@@ -8,7 +8,7 @@ flash:~/tmp/flash
 gdb:~/tmp/gdb/bin
 startup:~/wrk/startup
 linux:~/wrk/linux
-node:~/wrk/node
+node:~/my/node
 uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
 wrk:~/wrk
