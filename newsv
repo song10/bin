@@ -1,0 +1,6 @@
+#!/bin/sh
+mkdir $1 && cd $_
+yo angular-fullstack
+git init
+git add .
+git ci -m "first commit"
