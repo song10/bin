@@ -1,0 +1,22 @@
+#!/bin/sh
+if [ -n "$1" ]; then
+
+export SYSTEMC_HOME=$1
+export LD_LIBRARY_PATH=$SYSTEMC_HOME/lib-linux64:$LD_LIBRARY_PATH
+
+cat <<END
+g++ -I. -I$SYSTEMC_HOME/include -L. -L$SYSTEMC_HOME/lib-linux64 -Wl,-rpath=$SYSTEMC_HOME/lib-linux64 -o hello hello.cpp -lsystemc -lm
+END
+
+else
+
+sudo apt-get install -y g++
+wget -c http://www.accellera.org/downloads/standards/systemc/accept_license/accepted_download/systemc-2.3.0.tgz
+tar xf systemc-2.3.0.tgz
+cd systemc-2.3.0
+mkdir bld dist
+cd bld
+../configure --prefix=`pwd`/../dist
+make all install
+
+fi
