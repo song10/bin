@@ -1,6 +1,6 @@
 #!/bin/sh
 cd ~/Downloads
-wget -c http://eclipse.stu.edu.tw/technology/epp/downloads/release/kepler/SR1/eclipse-cpp-kepler-SR1-linux-gtk-x86_64.tar.gz
+curl -s -O -C - http://eclipse.stu.edu.tw/technology/epp/downloads/release/kepler/SR1/eclipse-cpp-kepler-SR1-linux-gtk-x86_64.tar.gz
 
 cd ~/opt
 if [ -d eclipse ]; then
