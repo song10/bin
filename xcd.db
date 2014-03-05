@@ -18,7 +18,7 @@ sid:~/wrk/sid1
 sid/bld:~/tmp/sid/bld
 sid/issues:~/tmp/sid/issues
 vep2conf:~/wrk/vep2conf/src
-andes:/mnt/home2/andes
+nds:~/my/andes
 repo:~/Dropbox/repo
 issues:~/tmp/issues
 uitron:~/tmp/uitron/test
