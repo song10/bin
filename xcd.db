@@ -66,7 +66,7 @@ www:~/my/app/prj/todo/assets/www
 tui:~/workspace/LinuxIru/Tui
 iru:~/workspace/LinuxIru/Libisiru
 haxe:~/tmp/lang/haxe
-dyna:~/my/node/dyna-server
+dyna:~/my/nova/dyna-server
 play:~/my/node/play
 prj:~/my/node/prj
 nova:~/my/nova
