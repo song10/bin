@@ -1,5 +1,5 @@
 #!/bin/sh
-which curl >/dev/null || sudo apt-get install -y curl
+#which curl >/dev/null || sudo apt-get install -y curl
 #curl -s https://raw.github.com/creationix/nvm/master/install.sh | sh
 wget -qO- https://raw.github.com/creationix/nvm/master/install.sh | sh
 [ -s $HOME/.nvm/nvm.sh ] && . $HOME/.nvm/nvm.sh # This loads NVM

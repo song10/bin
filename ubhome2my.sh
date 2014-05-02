@@ -2,13 +2,18 @@
 [ -d /mnt/data ] || exit 1
 
 MYDIR=/mnt/data/song10
-sudo mkdir -p $MYDIR
-sudo chown $USER.$USER $MYDIR
+
+if [ -d "$MYDIR" ]; then
+	sudo mkdir -p "$MYDIR"
+	sudo chown $USER.$USER "$MYDIR"
+fi
+
 cd $HOME
-ln -s $MYDIR my
-rm -f examples.desktop
+[ -L my ] || ln -s $MYDIR my
 for x in Desktop Documents Downloads Music Pictures Public Templates Videos 'VirtualBox VMs'; do
-  [ -d "$x" ] || mkdir -p "$x"
-  mv $x $MYDIR
-  ln -s $MYDIR/$x
+	[ -d "$MYDIR/$x" ] || mkdir "$MYDIR/$x"
+	[ -d "$x" -a ! -L "$x" ] && rmdir "$x"
+	[ -e "$x" ] || ln -s "$MYDIR/$x"
 done
+
+rm -f examples.desktop

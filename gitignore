@@ -19,8 +19,8 @@ if test 0 -lt $#; then
 	git update-index $args $*
 else
 	if [ -z "$args2" ]; then
-		git st | grep $grepopt '^#\t' | sed 's/#	//' | grep -v $grepopt '^\.\.'
+		git st | grep $grepopt '^#?\t\w+$' | sed -r 's/#?	//' | grep -v $grepopt '^\.\.'
 	else
-		git st | grep $grepopt '^#\t' | sed 's/#	//' | grep -v $grepopt '^\.\.' | tee -a .gitignore
+		git st | grep $grepopt '^#?\t\w+$' | sed -r 's/#?	//' | grep -v $grepopt '^\.\.' | tee -a .gitignore
 	fi
 fi
