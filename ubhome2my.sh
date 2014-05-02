@@ -17,3 +17,10 @@ for x in Desktop Documents Downloads Music Pictures Public Templates Videos 'Vir
 done
 
 rm -f examples.desktop
+
+## patch
+PDIR='VirtualBox VMs'
+if [ -L "$PDIR" ]; then
+	rm -f "$PDIR"
+	ln -s "$MYDIR/virtualbox" "$PDIR"
+fi
