@@ -10,7 +10,7 @@ fi
 
 cd $HOME
 [ -L my ] || ln -s $MYDIR my
-for x in Desktop Documents Downloads Music Pictures Public Templates Videos 'VirtualBox VMs'; do
+for x in Desktop Documents Downloads Music Pictures Public Templates Videos 'VirtualBox VMs' workspace; do
 	[ -d "$MYDIR/$x" ] || mkdir "$MYDIR/$x"
 	[ -d "$x" -a ! -L "$x" ] && rmdir "$x"
 	[ -e "$x" ] || ln -s "$MYDIR/$x"

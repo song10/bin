@@ -8,14 +8,14 @@ which java >/dev/null || PREPKG="$PREPKG default-jdk"
 
 # do it
 cd ~/Downloads
-curl -s -O -C - http://eclipse.stu.edu.tw/technology/epp/downloads/release/kepler/SR1/eclipse-cpp-kepler-SR1-linux-gtk-x86_64.tar.gz
+curl -s -O -C - http://eclipse.stu.edu.tw//technology/epp/downloads/release/kepler/SR2/eclipse-cpp-kepler-SR2-linux-gtk-x86_64.tar.gz
 
 mkdir -p ~/opt
 cd ~/opt
 if [ -d eclipse ]; then
 	echo `pwd`/eclipse/ existed\!
 else
-	tar xf ~/Downloads/eclipse-cpp-kepler-SR1-linux-gtk-x86_64.tar.gz
+	tar xf ~/Downloads/eclipse-cpp-kepler-SR2-linux-gtk-x86_64.tar.gz
 fi
 
 cd ~/.local/share/applications
