@@ -71,3 +71,5 @@ play:~/my/node/play
 prj:~/my/node/prj
 nova:~/my/nova
 is:~/my/insyde
+ocd:~/my/andes/openocd
+dbg:~/my/andesightws/Hello/Debug

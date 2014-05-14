@@ -79,6 +79,7 @@ if (0 == @ARGV) {
 	}
 	$script .= "mkdir -p $rz;cd $rz";
 	$script .= ";cd $ARGV[1]" if (1 < @ARGV);
+	$script .= ";title ."
 }
 
 #
