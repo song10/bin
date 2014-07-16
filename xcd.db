@@ -60,7 +60,7 @@ my:~/my
 pg:~/my/phonegap
 cordova:~/my/cordova
 cor:~/my/cordova
-app:~/my/app
+app:~/my/org/ten/app
 todo:~/my/app/prj/todo
 www:~/my/app/prj/todo/assets/www
 tui:~/workspace/LinuxIru/Tui
@@ -73,3 +73,4 @@ nova:~/my/nova
 is:~/my/insyde
 ocd:~/my/andes/openocd
 dbg:~/my/andesightws/Hello/Debug
+open:~/my/andes/open-source
