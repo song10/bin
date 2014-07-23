@@ -74,3 +74,5 @@ is:~/my/insyde
 ocd:~/my/andes/openocd
 dbg:~/my/andesightws/Hello/Debug
 open:~/my/andes/open-source
+meg:~/my/meg
+frt:~/my/forty
