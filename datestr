@@ -1,0 +1,16 @@
+#!/bin/sh
+RZ=`date  +%Y_%m_%d`
+
+while [[ 0 -lt "$#" ]]; do
+	case "$1" in
+		-l | --long )
+			RZ="${RZ}"`date  +_%H_%M`
+			;;
+		* )
+			echo "ignore argument: '$1'"
+			;;
+	esac
+	shift
+done
+
+echo ${RZ}
