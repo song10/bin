@@ -21,52 +21,45 @@ case $OS in
 esac
 
 
-do_osx(){
-	if [ 'up' = "$1" ]; then
-		shift
-		sudo echo -n # to ask sudo password first
-		gitup
-		aptup
-		sudo softwareupdate -i -a
-	else
-		gitup
-	fi
+do_aptup_osx(){
+	sudo echo -n # to ask sudo password first
+	aptup
+	sudo softwareupdate -i -a
 }
 
-do_linux(){
-	if [ 'up' = "$1" ]; then
-		shift
-		sudo echo -n # to ask sudo password first
-		gitup
-		aptup
-	else
-		gitup
-	fi
+do_aptup_linux(){
+	sudo echo -n # to ask sudo password first
+	aptup
 }
 
 # main()
 OPT_ALARM=false
 OPT_FORCE=false
 OPT_UPDATE=false
+OPT_APTUP=false
 
-while getopts ":afu" opt; do
-  case $opt in
-    a)
-      # echo "-a" >&2
-      OPT_ALARM=true
-      ;;
-    f)
-      # echo "-f" >&2
-      OPT_FORCE=true
-      ;;
-    u)
-      # echo "-u" >&2
-      OPT_UPDATE=true
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      ;;
-  esac
+while getopts ":afuA" opt; do
+	case $opt in
+		a)
+			# echo "-a" >&2
+			OPT_APTUP=true
+			;;
+		f)
+			# echo "-f" >&2
+			OPT_FORCE=true
+			;;
+		u)
+			# echo "-u" >&2
+			OPT_UPDATE=true
+			;;
+		A)
+			# echo "-a" >&2
+			OPT_ALARM=true
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			;;
+	esac
 done
 
 # common among OSs
@@ -83,5 +76,9 @@ if $OPT_ALARM; then
 fi
 
 if $OPT_UPDATE; then
-	do_$OS $*
+		gitup
+fi
+
+if $OPT_APTUP; then
+	do_aptup_$OS
 fi
