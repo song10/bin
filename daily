@@ -44,22 +44,44 @@ do_linux(){
 	fi
 }
 
-# common of OSs
+# main()
+OPT_ALARM=false
+OPT_FORCE=false
+OPT_UPDATE=false
+
+while getopts ":afu" opt; do
+  case $opt in
+    a)
+      # echo "-a" >&2
+      OPT_ALARM=true
+      ;;
+    f)
+      # echo "-f" >&2
+      OPT_FORCE=true
+      ;;
+    u)
+      # echo "-u" >&2
+      OPT_UPDATE=true
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+# common among OSs
 title
+payrolltime && $postcmdtit
 
-if [ '-f' = "$1" ]; then
-	shift;
-	postcmd=':'
-else
-	postcmd='exit'
-fi
-payrolltime && $postcmd
-if [ 2 = $? ]; then opt='-a -f'; fi
-
-if [ 'is1171' = `hostname` ]; then
-	xalarm -q -s -a "8:50" "$HOSTNAME: Ready to Home, Rex."
-	xalarm -q -s -a "9:00" "$HOSTNAME: Rex, Go Home Now!"
+if $OPT_FORCE; then
+	echo "Forced is nothing!"
 fi
 
-do_$OS $*
-exit $?
+if $OPT_ALARM; then
+	xalarm -q -s -t "17:15" "$HOSTNAME: Ready to Home, Rex."
+	xalarm -q -s -t "17:30" "$HOSTNAME: Rex, Go Home Now!"
+fi
+
+if $OPT_UPDATE; then
+	do_$OS $*
+fi
