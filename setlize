@@ -1,0 +1,66 @@
+#!/usr/bin/env node
+
+var path = require('path');
+var app = {};
+
+! function() {
+   var index = process.argv.indexOf('-list', 2);
+   if (~index) {
+      app.is_list = true;
+      process.argv.splice(index, 1);
+   }
+}();
+
+! function() {
+   var index = process.argv.indexOf('-exclude', 2);
+   if (~index) {
+      app.is_exclude = process.argv[index + 1];
+      process.argv.splice(index, 2);
+   }
+}();
+
+Array.prototype.getUnique = function() {
+   var u = {},
+      a = [];
+   for (var i = 0, l = this.length; i < l; ++i) {
+      if (u.hasOwnProperty(this[i])) {
+         continue;
+      }
+      a.push(this[i]);
+      u[this[i]] = 1;
+   }
+   return a;
+}
+
+var options = process.argv.filter(function(x) {
+   return '-' == x[0];
+});
+if (options.length) {
+   console.log('unknowns options:', options);
+}
+
+var paths = process.argv[2] || process.env.PATH;
+paths = paths.split(path.delimiter);
+var unipaths = paths.getUnique();
+
+! function() {
+   if (app.is_exclude) {
+      var xpaths = app.is_exclude.split(path.delimiter);
+      var unixpaths = xpaths.getUnique();
+      var index;
+      for (index in unixpaths){
+         var index2 = unipaths.indexOf(unixpaths[index]);
+         if (~index) unipaths.splice(index2, 1);
+      }
+   }
+}();
+
+! function() {
+   if (app.is_list) {
+      console.log(unipaths);
+      process.exit(0);
+   }
+}();
+
+var shellpath = unipaths.join(':');
+console.log(shellpath);

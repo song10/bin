@@ -1,0 +1,3 @@
+ apt-get purge nvidia* bumblebee*
+ apt-get install --reinstall ubuntu-desktop unity compizconfig-settings-manager upstart
+ apt-get autoremove 
