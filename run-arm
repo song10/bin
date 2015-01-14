@@ -1,0 +1,5 @@
+#!/bin/sh
+QEMU=qemu-arm-static
+QEMUFLAGS="-L /usr/arm-linux-gnueabihf -E LD_LIBRARY_PATH=."
+echo "${QEMU} ${QEMUFLAGS} \"$@\""
+${QEMU} ${QEMUFLAGS} $@

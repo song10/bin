@@ -1,8 +1,14 @@
 #!/bin/sh
+
 usage(){
 	cat <<EOF
 Usage:
 	`basename $0` [options]
+		-h print usage
+		-a do aptup
+		-f force
+		-u do update
+		-A do alarm
 EOF
 	exit
 }
@@ -38,7 +44,7 @@ OPT_FORCE=false
 OPT_UPDATE=false
 OPT_APTUP=false
 
-while getopts ":afuA" opt; do
+while getopts ":hafuA" opt; do
 	case $opt in
 		a)
 			# echo "-a" >&2
@@ -58,6 +64,9 @@ while getopts ":afuA" opt; do
 			;;
 		\?)
 			echo "Invalid option: -$OPTARG" >&2
+			;;
+		h)
+			usage
 			;;
 	esac
 done
