@@ -1,0 +1,32 @@
+#!/bin/sh
+
+LD_VER=4
+while getopts ":34" opt; do
+	case $opt in
+		3)
+			LD_VER=3
+			shift $((OPTIND-1))
+			;;
+		4)
+			LD_VER=4
+			shift $((OPTIND-1))
+			;;
+		\?)
+			echo "Invalid option: -$OPTARG" >&2
+			;;
+		# h)
+		# 	usage
+		# 	;;
+	esac
+done
+
+QEMU=/home/song10/my/andes/qemu/ins.qemu.nds/bin/qemu-nds32
+
+if [ "3" = "$LD_VER" ]; then
+	QEMUFLAGS="-L /home/song10/my/andes/bsp/bsp321/nds32le-linux-glibc-v3/bin/../nds32le-linux/libc -E LD_LIBRARY_PATH=."
+else
+	QEMUFLAGS="-L /home/song10/my/andes/glibc/bsp410/build_glibc_test_for_REX/local -E LD_LIBRARY_PATH=."
+fi
+
+echo "${QEMU} ${QEMUFLAGS} $@"
+${QEMU} ${QEMUFLAGS} $@
