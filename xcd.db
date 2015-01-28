@@ -1,13 +1,12 @@
 down:~/Downloads
 drop:~/Dropbox
-xman:~/lang/js/xman
+xman:~/my/lang/js/xman
 ubfavor:~/wrk/ubfavor
 express:~/wrk/express
 bin:~/bin
 flash:~/tmp/flash
-gdb:~/tmp/gdb/bin
 startup:~/wrk/startup
-linux:~/wrk/linux
+linux:~/my/andes/linux
 node:~/my/node
 uitron:~/tmp/uitron
 nodejs:~/wrk/js/nodejs
@@ -35,10 +34,10 @@ irisgo:~/workspace/irisgo
 opt:~/opt
 irissrvr:~/insyde/project/iris/irissrvr
 ringo:~/wrk/js/ringojs
-lua:~/lang/lua
-lang:~/lang
+lua:~/my/lang/lua
+lang:~/my/lang
 eino:~/my/app/prj/einoman/assets/www
-einoman:~/lang/js/einoman
+einoman:~/my/lang/js/einoman
 edk2:~/src/edk2
 c9:~/my/js/cloud9
 mymenu:~/my/js/cssmenu/mymenu2
@@ -65,7 +64,7 @@ todo:~/my/app/prj/todo
 www:~/my/app/prj/todo/assets/www
 tui:~/workspace/LinuxIru/Tui
 iru:~/workspace/LinuxIru/Libisiru
-haxe:~/tmp/lang/haxe
+haxe:~/my/lang/haxe
 dyna:~/my/nova/dyna-server
 play:~/my/node/play
 prj:~/my/node/prj
@@ -81,3 +80,4 @@ nonos:~/my/andes/non-os
 bu:~/my/andes/binutils
 test:~/my/andes/binutils/test/suite
 glibc:~/my/andes/glibc
+gdb:~/my/andes/gdb
