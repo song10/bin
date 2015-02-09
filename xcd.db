@@ -81,3 +81,5 @@ bu:~/my/andes/binutils
 test:~/my/andes/binutils/test/suite
 glibc:~/my/andes/glibc
 gdb:~/my/andes/gdb
+3:~/my/lang/js/three
+tls:~/my/andes/binutils/test/tls
