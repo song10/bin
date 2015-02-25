@@ -1,0 +1,5 @@
+#!/bin/sh
+INFILE=${1:-nofile.cer}
+OUFILE=${2:-$1.pem}
+echo "openssl x509 -inform der -in ${INFILE} -out ${OUFILE}"
+openssl x509 -inform der -in ${INFILE} -out ${OUFILE}

@@ -1,0 +1,5 @@
+#!/bin/sh
+INFILE=${1:-nofile.pem}
+OUFILE=${2:-$1.der}
+echo "openssl x509 -outform der -in ${INFILE} -out ${OUFILE}"
+openssl x509 -outform der -in ${INFILE} -out ${OUFILE}
