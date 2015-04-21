@@ -22,7 +22,7 @@ repo:~/Dropbox/repo
 issues:~/tmp/issues
 uitron:~/tmp/uitron/test
 coffee:~/wrk/js/coffee
-tc:~/tc
+tc:~/my/andes/toolchain
 kill:~/tmp/kill
 train:~/wrk/training
 ncurses:~/wrk/ncurses
@@ -83,3 +83,4 @@ gdb:~/my/andes/gdb
 3:~/my/lang/js/three
 tls:~/my/andes/binutils/test/tls
 ndro:~/my/android
+qemu:~/my/andes/qemu
