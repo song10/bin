@@ -1,32 +1,49 @@
-#!/bin/sh
+#!/bin/bash
 
-LD_VER=4
-while getopts ":34" opt; do
+usage(){
+	cat <<EOF
+Usage:
+	`basename $0` [options]
+		-h print usage
+		-t test version toolchain
+		-3 bsp3 toolchain
+		-4 bsp4 toolchain
+EOF
+	exit
+}
+
+if [ $# -eq 0 ]; then usage; fi
+
+LD_VER=t
+LIBPATH="/home/data/andes/toolchain/v3/ins/nds32le-linux"
+while getopts ":h43t" opt; do
 	case $opt in
+		t)
+			LD_VER=t
+			LIBPATH="/home/data/andes/toolchain/v3/ins/nds32le-linux"
+			shift $((OPTIND-1))
+			;;
 		3)
 			LD_VER=3
+			LIBPATH="/home/song10/my/andes/bsp/bsp321/nds32le-linux-glibc-v3/nds32le-linux/libc"
 			shift $((OPTIND-1))
 			;;
 		4)
 			LD_VER=4
+			LIBPATH="~/my/andes/glibc/bsp410/build_glibc_test_for_REX/local"
 			shift $((OPTIND-1))
+			;;
+		h)
+			usage
 			;;
 		\?)
 			echo "Invalid option: -$OPTARG" >&2
 			;;
-		# h)
-		# 	usage
-		# 	;;
 	esac
 done
 
-QEMU=/home/song10/my/andes/qemu/ins.qemu.nds/bin/qemu-nds32
-
-if [ "3" = "$LD_VER" ]; then
-	QEMUFLAGS="-L /home/song10/my/andes/bsp/bsp321/nds32le-linux-glibc-v3/bin/../nds32le-linux/libc -E LD_LIBRARY_PATH=."
-else
-	QEMUFLAGS="-L /home/song10/my/andes/glibc/bsp410/build_glibc_test_for_REX/local -E LD_LIBRARY_PATH=."
-fi
+QEMU=~/my/andes/qemu/ins.qemu.nds/bin/qemu-nds32
+QEMUFLAGS="-L ${LIBPATH} -E LD_LIBRARY_PATH=."
 
 echo "${QEMU} ${QEMUFLAGS} $@"
 ${QEMU} ${QEMUFLAGS} $@
