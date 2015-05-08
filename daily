@@ -49,6 +49,7 @@ while getopts ":hafuA" opt; do
 		a)
 			# echo "-a" >&2
 			OPT_APTUP=true
+			sudo echo
 			;;
 		f)
 			# echo "-f" >&2
