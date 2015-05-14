@@ -84,3 +84,5 @@ gdb:~/my/andes/gdb
 tls:~/my/andes/binutils/test/tls
 ndro:~/my/android
 qemu:~/my/andes/qemu
+js:~/my/lang/js
+full:~/my/lang/js/fullstack
