@@ -86,3 +86,4 @@ ndro:~/my/android
 qemu:~/my/andes/qemu
 js:~/my/lang/js
 full:~/my/lang/js/fullstack
+pic:~/my/andes/binutils/test/pic/v1

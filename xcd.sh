@@ -12,6 +12,7 @@ _lookup () {
 			val=$(eval "echo $val")
 			mkdir -p $val
 			cd $val
+			title "$1"
 			return 0
 		fi
 	done
