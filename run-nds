@@ -5,6 +5,7 @@ usage(){
 Usage:
 	`basename $0` [options]
 		-h print usage
+		-v print verbose messages
 		-t test version toolchain
 		-3 bsp3 toolchain
 		-4 bsp4 toolchain
@@ -16,7 +17,9 @@ if [ $# -eq 0 ]; then usage; fi
 
 LD_VER=t
 LIBPATH="/home/data/andes/toolchain/v3/ins/nds32le-linux"
-while getopts ":h43t" opt; do
+
+OPTIND=1
+while getopts ":hv43t" opt; do
 	case $opt in
 		t)
 			LD_VER=t
@@ -33,6 +36,9 @@ while getopts ":h43t" opt; do
 			LIBPATH="~/my/andes/glibc/bsp410/build_glibc_test_for_REX/local"
 			shift $((OPTIND-1))
 			;;
+		v)
+			opt_verbose=true
+			;;
 		h)
 			usage
 			;;
@@ -45,5 +51,8 @@ done
 QEMU=~/my/andes/qemu/ins.qemu.nds/bin/qemu-nds32
 QEMUFLAGS="-L ${LIBPATH} -E LD_LIBRARY_PATH=."
 
-echo "${QEMU} ${QEMUFLAGS} $@"
+if ${opt_verbose}; then
+	echo "${QEMU} ${QEMUFLAGS} $@"
+fi
+
 ${QEMU} ${QEMUFLAGS} $@
