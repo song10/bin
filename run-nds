@@ -18,6 +18,8 @@ if [ $# -eq 0 ]; then usage; fi
 LD_VER=t
 LIBPATH="/home/data/andes/toolchain/v3/ins/nds32le-linux"
 
+opt_verbose=false
+
 OPTIND=1
 while getopts ":hv43t" opt; do
 	case $opt in
