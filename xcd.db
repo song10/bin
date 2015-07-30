@@ -13,9 +13,6 @@ nodejs:~/wrk/js/nodejs
 wrk:~/wrk
 ninja:~/wrk/ninja
 iceman:~/tmp/iceman/bin
-sid:~/wrk/sid1
-sid/bld:~/tmp/sid/bld
-sid/issues:~/tmp/sid/issues
 vep2conf:~/wrk/vep2conf/src
 nds:~/my/andes
 repo:~/Dropbox/repo
@@ -87,3 +84,5 @@ qemu:~/my/andes/qemu
 js:~/my/lang/js
 full:~/my/lang/js/fullstack
 pic:~/my/andes/binutils/test/pic
+sqa:~/my/andes/sqa
+sid:~/my/andes/sid

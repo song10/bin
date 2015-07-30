@@ -40,6 +40,7 @@ while getopts ":hv43t" opt; do
 			;;
 		v)
 			opt_verbose=true
+			shift $((OPTIND-1))
 			;;
 		h)
 			usage
