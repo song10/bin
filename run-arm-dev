@@ -1,0 +1,6 @@
+#!/bin/sh
+# QEMU=~/my/andes/qemu/ins.qemu.nds/bin/qemu-arm
+QEMU=~/my/andes/qemu/bld.qemu.nds/arm-linux-user/qemu-arm
+QEMUFLAGS="-L /usr/arm-linux-gnueabihf -E LD_LIBRARY_PATH=."
+echo "${QEMU} ${QEMUFLAGS} \"$@\""
+${QEMU} ${QEMUFLAGS} $@
