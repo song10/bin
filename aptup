@@ -30,24 +30,24 @@ do_osx(){
 
 do_linux(){
 	while :; do
-		dmesg | head -9 | grep -i ubuntu > /dev/null
+		_=$(which apt)
+		if [ 0 -eq $? ]; then
+			sudo apt update
+			sudo apt -y upgrade
+			sudo apt -y autoremove
+			break
+		fi
+
+		_=$(which apt-get)
 		if [ 0 -eq $? ]; then
 			sudo apt-get update
-			sudo apt-get -y dist-upgrade
+			sudo apt-get dist-upgrade
 			break
 		fi
 
 		dmesg | head -9 | grep -i 'red hat' > /dev/null
 		if [ 0 -eq $? ]; then
 			sudo yum -y update
-			break
-		fi
-
-		# be smart
-		_=$(which apt-get)
-		if [ 0 -eq $? ]; then
-			sudo apt-get update
-			sudo apt-get -y dist-upgrade
 			break
 		fi
 

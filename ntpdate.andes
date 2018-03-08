@@ -1,0 +1,3 @@
+sudo service ntp stop
+sudo ntpdate atcpcs13
+sudo service ntp restart

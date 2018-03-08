@@ -1,0 +1,2 @@
+#/bin/sh
+sed -e "s/watermarktextstring/ /g" <"$1" >unwatermarked.pdf && pdftk unwatermarked.pdf output fixed.pdf && mv fixed.pdf unwatermarked.pdf

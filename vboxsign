@@ -1,0 +1,27 @@
+#!/bin/bash
+# Sign and load VirtualBox modules
+
+# Run as root
+[ "`whoami`" = root ] || exec sudo "$0" "$@"
+
+# Set working directory
+dir=~/my/keys
+cd $dir
+
+# (Optional) Decrypt private key. To initially encrypt, run `gpg -c MOK.priv` then shred MOK.priv
+echo
+#gpg -d --passphrase-file /owned/by/root/.pass MOK.priv.gpg > MOK.priv
+echo
+
+# Sign and load modules
+for module in vboxdrv vboxnetflt vboxnetadp vboxpci; do
+  [ "`hexdump -e '"%_p"' $(modinfo -n $module) | tail | grep signature`" ] && echo -e "\e[93mModule $module is already signed. Skipping.\e[0m" || /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n $module)
+  printf "$module: "
+  echo `hexdump -e '"%_p"' $(modinfo -n $module) | tail | grep signature`
+  modprobe $module && echo -e "\e[92m$module successfully loaded\e[0m" || echo -e "\e[91mFailed to load $module\e[0m"
+  done
+
+# (Optional) Shred private key
+echo
+#shred -vfuz MOK.priv
+echo

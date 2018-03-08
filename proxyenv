@@ -1,0 +1,17 @@
+case $1 in
+  none)
+    export -n http_proxy
+    export -n ftp_proxy
+    export -n socks_proxy
+    export -n https_proxy
+    ;;
+  andes)
+    export http_proxy=http://cache1:3128/
+    export ftp_proxy=ftp://cache1:3128/
+    export socks_proxy=socks://cache1:3128/
+    export https_proxy=https://cache1:3128/
+    ;;
+  *)
+    env | grep proxy
+    ;;
+esac

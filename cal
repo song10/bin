@@ -1,0 +1,6 @@
+#!/usr/bin/perl -w
+
+foreach (@ARGV) {
+    $z = eval $_;
+    printf "0x%x %d\n", $z, $z;
+}

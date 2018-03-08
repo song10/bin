@@ -1,3 +1,3 @@
 #!/bin/sh
-cd $*
-title .
+cd "$@"
+title ..

@@ -32,9 +32,15 @@ else
 	TITLE=`hostname`
 fi
 
+CDIR=`pwd`
 case $TITLE in
 	".")
-		TITLE=$(basename $(pwd))
+		TITLE=$(basename ${CDIR})
+		;;
+	"..")
+		_TMP=$(dirname ${CDIR})
+		TITLE=$(basename ${CDIR})
+		TITLE="$(basename ${_TMP})/${TITLE}"
 		;;
 	*)
 		:
