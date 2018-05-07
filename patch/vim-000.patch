@@ -1,6 +1,0 @@
-36,37c36,37
-<   echoerr '"sudo vim" and $HOME is not same to /root are detected.'
-<         \.'Please use sudo.vim plugin instead of sudo command or set always_set_home in sudoers.'
----
-> "  echoerr '"sudo vim" and $HOME is not same to /root are detected.'
-> "        \.'Please use sudo.vim plugin instead of sudo command or set always_set_home in sudoers.'
