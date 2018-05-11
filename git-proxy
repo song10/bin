@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+read lport uport < /proc/sys/net/ipv4/ip_local_port_range
+while true; do
+    port=$(shuf -i "$lport-$uport" -n1)
+    nc -z 127.0.0.1 "$port" || break
+done
+
+ssh -M -S git-proxy -o ExitOnForwardFailure=yes -NfTL "${port}:$1:$2" atcsqa09 1>&2
+trap 'ssh -q -S git-proxy -O exit atcsqa09' EXIT
+socat STDIO TCP:localhost:$port
