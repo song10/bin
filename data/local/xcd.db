@@ -1,0 +1,13 @@
+bin:~/my/bin
+nds:~/my/andes
+down:~/Downloads
+tmp:~/tmp
+my:~/my
+prj:~/my/andes/prj
+qemu:~/my/andes/v5/prj/riscv-qemu
+uboot:~/my/andes/linux/nds32/u-boot-nds32
+bs3:~/my/andes/build-system-3
+local:/local/song10
+rc:~/my/rc
+smp:~/my/andes/v5/smp
+riscv:~/my/riscv

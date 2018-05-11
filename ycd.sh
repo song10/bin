@@ -1,3 +1,5 @@
 #!/bin/sh
 cd "$@"
-title ..
+
+# for GNU Screen?
+title $(basename `pwd`)
