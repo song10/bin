@@ -1,0 +1,20 @@
+#!/bin/sh
+if [ -z "$1" ]; then
+    ps S
+    exit "$?"
+fi
+
+cmd="$1"
+case "$cmd" in
+    'goolge'|'chrome')
+        cmd='google-chrome-stable'
+        ;;
+    'firefox')
+        cmd='firefox'
+        ;;
+    *)
+        echo "Unknow option '$cmd'!"
+        ;;
+esac
+
+"$cmd" &> /dev/null &
