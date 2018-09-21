@@ -1,14 +1,28 @@
 #!/usr/bin/env python3
 
-import sys
-from config import config as cfg 
-# print(cfg.context)
 
+class Structure:
+    def __init__(self, **entries):
+        self.__dict__.update(entries)
+
+
+# helpers
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
+# get script path
+import os
+py_path = os.path.dirname(os.path.realpath(__file__))
+
+# read config
+import json
+cfg_file = os.path.join(py_path, 'config.json')
+with open(cfg_file) as fh:
+    jsn = json.load(fh)
+    cfg = Structure(**jsn)
 
 # determin key to lookup
+import sys
 if len(sys.argv) < 2:
     print('nowhere to go, abort!')
     exit(1)
@@ -34,7 +48,6 @@ else:
         db[k] = v
     # pp.pprint(db)
 
-
     # lookup now
     if key in db:
         # found
@@ -50,7 +63,7 @@ else:
 from string import Template
 title = '/'.join(path.split('/')[-2:])
 d = dict(path=path, title=title)
-template = Template('mkdir -p $path;cd $path;title $title')
+template = Template('mkdir -p $path;cd $path;title $title;[ -e .xcd.rc ] && . .xcd.rc')
 script = template.substitute(d)
 # print('script', script)
 

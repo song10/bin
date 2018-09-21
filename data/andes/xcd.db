@@ -13,5 +13,5 @@ smp:~/my/andes/v5/smp
 riscv:~/my/riscv
 v5:~/my/andes/v5
 v3:~/my/andes/v3
-play:~/my/play
+v3cosim:~/my/andes/v3/test/rex_random18
 test:~/my/andes/v3/test
