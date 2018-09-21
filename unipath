@@ -1,0 +1,19 @@
+#!/bin/sh
+# running as script has no effects.
+# source this script does the job.
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; new_PATH=
+    while [ -n "$old_PATH" ]; do
+        x=${old_PATH%%:*}               # the first remaining entry
+        x=$(readlink -f $x)             # normalize
+        case $new_PATH: in
+            *:"$x":*) ;;                # already there
+            *) new_PATH=$new_PATH:$x;;  # not there yet
+        esac
+        old_PATH=${old_PATH#*:}         # pop remaining first entry
+    done
+    new_PATH=${new_PATH#:}              # pop leading ':'
+    PATH=$new_PATH
+    echo "$PATH"
+    unset old_PATH new_PATH x
+fi
