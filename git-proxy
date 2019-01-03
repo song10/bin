@@ -8,6 +8,6 @@ while true; do
     nc -z 127.0.0.1 "$port" || break
 done
 
-ssh -M -S git-proxy -o ExitOnForwardFailure=yes -NfTL "${port}:$1:$2" atcsqa09 1>&2
-trap 'ssh -q -S git-proxy -O exit atcsqa09' EXIT
+ssh -M -S "/tmp/git-proxy-$port" -o ExitOnForwardFailure=yes -NfTL "${port}:$1:$2" atcsqa06 1>&2
+trap "ssh -q -S /tmp/git-proxy-$port -O exit atcsqa06" EXIT
 socat STDIO TCP:localhost:$port
