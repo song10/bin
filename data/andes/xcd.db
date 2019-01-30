@@ -15,3 +15,7 @@ v5:~/my/andes/v5
 v3:~/my/andes/v3
 v3cosim:~/my/andes/v3/test/rex_random18
 test:~/my/andes/v3/test
+smp/build_kernel:ll
+tc:~/my/andes/v5/toolchain
+src:~/my/andes/v5/source
+tst:~/my/andes/v5/test

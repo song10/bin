@@ -15,3 +15,6 @@ v5:~/my/andes/v5
 v3:~/my/andes/v3
 play:~/my/play
 test:~/my/andes/v3/test
+ghop:~/my/cross/romloader
+tc:~/my/andes/toolchain
+bug:~/my/andes/v5/test/bug
