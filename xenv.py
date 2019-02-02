@@ -14,6 +14,9 @@ pp = pprint.PrettyPrinter(indent=4)
 import os
 py_path = os.path.dirname(os.path.realpath(__file__))
 
+# default context
+data = Structure(**{'context': 'local'})
+
 # read config
 import json
 cfg_file = os.path.join(py_path, 'config.json')
@@ -23,15 +26,27 @@ with open(cfg_file) as cfg:
 
 # get or set
 import sys
-while len(sys.argv) > 1:
-    if data.context == sys.argv[1]:
+# print('Argument List:', str(sys.argv), len(sys.argv))
+while True:
+    len = len(sys.argv)
+    if len <= 1:  # get context
+        data.context = os.environ['XENV']
         break
 
     data.context = sys.argv[1]
+    if len <= 2: # temporary change
+        break
+
+    # permanent change
     jsn = vars(data)
-    # write config
     with open(cfg_file, 'w') as config:
-        json.dump(jsn, config)
+        json.dump(jsn, config) # write config
     break
 
-pp.pprint(vars(data))
+# pp.pprint(vars(data))
+with open('/tmp/xenv', 'w') as script:
+    script.write('''
+export XENV="%s"
+echo "XENV = $XENV"
+''' % data.context)
+    print('. /tmp/xenv')

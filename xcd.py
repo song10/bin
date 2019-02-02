@@ -15,6 +15,7 @@ import os
 py_path = os.path.dirname(os.path.realpath(__file__))
 
 # read config
+cfg = {'context': 'local'}
 import json
 cfg_file = os.path.join(py_path, 'config.json')
 with open(cfg_file) as fh:
@@ -29,6 +30,9 @@ if len(sys.argv) < 2:
 key = sys.argv[1]
 # print('key', key)
 
+# resolve context
+context = os.environ['XENV'] or cfg.context
+
 # convert key to path
 path = key
 import os
@@ -38,7 +42,7 @@ else:
     # load database
     dbname = sys.argv[0][:-2] + 'db'
     lst = dbname.split('/')
-    lst.insert(-1, 'data/{}'.format(cfg.context))
+    lst.insert(-1, 'data/{}'.format(context))
     dbname = '/'.join(lst)
     # print('dbname', dbname)
     dbfh = open(dbname, 'r+')
@@ -63,7 +67,8 @@ else:
 from string import Template
 title = '/'.join(path.split('/')[-2:])
 d = dict(path=path, title=title)
-template = Template('mkdir -p $path;cd $path;title $title;[ -e .xcd.rc ] && . .xcd.rc')
+template = Template(
+    'mkdir -p $path;cd $path;title $title;[ -e .xcd.rc ] && . .xcd.rc')
 script = template.substitute(d)
 # print('script', script)
 
