@@ -15,14 +15,14 @@ import os
 py_path = os.path.dirname(os.path.realpath(__file__))
 
 # default context
-data = Structure(**{'context': 'local'})
+cfg = Structure(**{'context': 'local'})
 
 # read config
 import json
 cfg_file = os.path.join(py_path, 'config.json')
-with open(cfg_file) as cfg:
-    jsn = json.load(cfg)
-    data = Structure(**jsn)
+with open(cfg_file) as fh:
+    jsn = json.load(fh)
+    cfg = Structure(**jsn) # update with file
 
 # get or set
 import sys
@@ -30,23 +30,23 @@ import sys
 while True:
     len = len(sys.argv)
     if len <= 1:  # get context
-        data.context = os.environ['XENV']
+        cfg.context = os.environ.get('XENV', cfg.context)
         break
 
-    data.context = sys.argv[1]
+    cfg.context = sys.argv[1]
     if len <= 2: # temporary change
         break
 
     # permanent change
-    jsn = vars(data)
+    jsn = vars(cfg)
     with open(cfg_file, 'w') as config:
         json.dump(jsn, config) # write config
     break
 
-# pp.pprint(vars(data))
+# pp.pprint(vars(cfg))
 with open('/tmp/xenv', 'w') as script:
     script.write('''
 export XENV="%s"
 echo "XENV = $XENV"
-''' % data.context)
+''' % cfg.context)
     print('. /tmp/xenv')

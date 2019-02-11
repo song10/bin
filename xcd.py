@@ -14,13 +14,15 @@ pp = pprint.PrettyPrinter(indent=4)
 import os
 py_path = os.path.dirname(os.path.realpath(__file__))
 
+# default context
+cfg = Structure(**{'context': 'local'})
+
 # read config
-cfg = {'context': 'local'}
 import json
 cfg_file = os.path.join(py_path, 'config.json')
 with open(cfg_file) as fh:
     jsn = json.load(fh)
-    cfg = Structure(**jsn)
+    cfg = Structure(**jsn) # update with file
 
 # determin key to lookup
 import sys
@@ -31,7 +33,7 @@ key = sys.argv[1]
 # print('key', key)
 
 # resolve context
-context = os.environ['XENV'] or cfg.context
+context = os.environ.get('XENV', cfg.context)
 
 # convert key to path
 path = key
