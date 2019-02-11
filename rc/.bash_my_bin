@@ -1,0 +1,1 @@
+for x in `ls ~/.bashrc_*`; do . "$x"; done
