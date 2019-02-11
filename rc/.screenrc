@@ -1,0 +1,11 @@
+#termcapinfo xterm 'hs:ts=\E]0;:fs=\007:ds=\E]0;bash\007'
+#caption always "%{= bk} %{= bY} [%n]%t @ %H %{-} %= %{= bR} %l %{-} | %{= KG} %Y-%m-%d %{-} "
+#shelltitle "> |bash"
+defhstatus "\005t"
+hardstatus alwayslastline "%{= bC}%H %{by}%?%-Lw%?%{bw}%n*%f %t%?(%u)%?%{-}%?%+Lw%? %=%{= bC} %0c:%s "
+hardstatus on
+defscrollback 10000
+
+screen -t misc 2
+screen -t work 1
+screen -t $HOST 0

@@ -1,0 +1,15 @@
+export EDITOR=vim
+#export GIT_PROXY_COMMAND=git-proxy
+
+if [ -z "$PS1" ]; then
+        #echo This shell is not interactive
+        umask 002
+else
+        #echo This shell is interactive
+        umask 022
+fi
+
+#export LANGUAGE="en"
+#export LANG="C"
+#export LC_MESSAGES="C"
+#export LC_ALL=en_US.UTF-8

@@ -1,0 +1,58 @@
+[user]
+	name = Rex Zhuo
+	email = rex.zhuo@outlook.com
+
+[user1]
+	name = Rex Cho
+	email = rex.cho.1226@gmail.com
+	
+[alias]
+	ci  = commit
+	cia = commit -a
+	co  = checkout
+	st  = status
+	br  = branch
+	brr = branch -r
+	re  = remote
+	fe  = fetch --no-tags
+	pul = pull --rebase
+	pus = push
+	dif = diff -w
+	ls  = ls-files
+#	praise = blame
+	sm = submodule
+	cp = cherry-pick
+
+[core]
+	editor = vim
+	whitespace = tabwidth=8
+	pager = less -x2
+#	gitproxy = git-proxy
+
+[apply]
+	whitespace = strip
+
+[diff]
+	color = auto
+#	rename = copy
+
+[pager]
+	color = true
+
+[status]
+	color = auto
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[credential]
+	helper = cache --timeout=3600
+[push]
+	default = simple
+[http]
+#	proxy = http://cache1:3128
+[sendemail]
+	smtpEncryption = tls
+	smtpServer = smtp.gmail.com
+	username = song10@gmail.com
+	smtpServerPort = 587

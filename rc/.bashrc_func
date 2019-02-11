@@ -1,0 +1,15 @@
+my_source_path() {
+    SOURCE="$1"
+    while [ -h "$SOURCE" ]; do
+        TARGET="$(readlink "$SOURCE")"
+        if [[ $TARGET == /* ]]; then
+            SOURCE="$TARGET"
+        else
+            DIR="$( dirname "$SOURCE" )"
+            SOURCE="$DIR/$TARGET"
+        fi
+    done
+    RDIR="$( dirname "$SOURCE" )"
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    echo "$DIR"
+}
