@@ -4,7 +4,7 @@ down:~/Downloads
 tmp:~/tmp
 my:~/my
 prj:~/my/andes/prj
-qemu:~/my/andes/v5/prj/riscv-qemu
+qemu:~/my/andes/v5/qemu-test/source/qemu
 uboot:~/my/andes/linux/nds32/u-boot-nds32
 bs3:~/my/andes/bs3
 local:/local/song10
