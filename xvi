@@ -19,6 +19,6 @@ vim %(file)s %(line)s
 """
 
 script = template % vars(args)
-print script
+print(script)
 
 # subprocess.call(script, shell=True)
