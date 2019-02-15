@@ -1,1 +1,1 @@
-for x in `ls ~/.bashrc_*`; do . "$x"; done
+for x in `ls --indicator-style=none ~/.bashrc_*`; do . "$x"; done
